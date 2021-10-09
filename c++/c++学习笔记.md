@@ -19,6 +19,7 @@
     cout << sizeof(float *) << endl;
     
 运行结果
+
     4
     4
     4
