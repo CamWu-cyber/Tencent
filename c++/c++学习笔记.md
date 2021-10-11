@@ -53,3 +53,41 @@
 #### 指针、数组、函数三个碰撞在一起的使用
 要求：封装一个函数，利用冒泡排序，实现对整型数组的升序排序
 
+    #include <iostream>
+    using namespace std;
+    #include <cstdlib>
+    #include <unistd.h>
+
+    void boubleSort(int * arr, int len){
+        for(int i=0;i<len-1;i++){
+            for(int j=0;j<len-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    void printArray(int * arr, int len){
+        for(int i=0;i<len;i++){
+            cout << arr[i] << endl;
+        }
+    }
+
+    int main(){
+        //1.创建数组
+        int arr[10] = {4,3,2,6,9,10,1,7};
+
+        //2.创建函数，实现冒泡排序
+        //数组名就代表数组的首地址！！
+        int len = sizeof(arr);
+        boubleSort(arr, len);
+
+        //3.打印排序后的数组
+        printArray(arr, len);
+
+        system("pause");
+        return 0;
+    }
