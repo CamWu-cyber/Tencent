@@ -55,8 +55,6 @@
 
     #include <iostream>
     using namespace std;
-    #include <cstdlib>
-    #include <unistd.h>
 
     void boubleSort(int * arr, int len){
         for(int i=0;i<len-1;i++){
@@ -78,16 +76,14 @@
 
     int main(){
         //1.创建数组
-        int arr[10] = {4,3,2,6,9,10,1,7};
+        int arr[10] = {4,3,2,6,9,10,1,7,99,100};
 
         //2.创建函数，实现冒泡排序
         //数组名就代表数组的首地址！！
-        int len = sizeof(arr);
+        int len = sizeof(arr)/sizeof(arr[0]);
         boubleSort(arr, len);
 
         //3.打印排序后的数组
         printArray(arr, len);
-
-        system("pause");
         return 0;
     }
