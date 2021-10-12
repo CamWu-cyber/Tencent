@@ -1,4 +1,4 @@
-### 指针
+## 指针
 ---
 #### 指针的定义
     int a = 10;
@@ -87,3 +87,48 @@
         printArray(arr, len);
         return 0;
     }
+    
+    运行结果：1,2,3,4,6,7,9,10,99,100
+
+
+
+## 结构体
+***
+1.结构体是自己定义的数据类型，里面可以包含了各种类型的成员；
+2.结构体传递到函数中的时候，推荐使用**地址传递**（节省空间，一个指针才4个字节）；
+3.**地址传递**的时候形参的值改变了会影响实参的值也跟着变化，如果你不想改变实参的值，就在结构体参数前面加const进行修饰；
+
+    #include<iostream>
+    using namespace std;
+    #include<string>
+
+    //学生结构体定义
+    struct student
+    {
+        string name;
+        int age;
+        int score;
+    };
+
+    //1.采用地址传递的话，函数里面就要用指针来接受这个地址
+    //2.地址传递有一个问题，就是如果函数内部把形参的值不小心修改了，实参的值也会相应地发生改变，所以如果不想改变实参的值，就加上const关键字
+    void printStu(const student * stu)
+    {
+        //stu -> score = 100; //操作失败，因为加了const修饰
+        cout << "name:" << stu->name << "  age:" << stu->age << "  score:" << stu->score << endl;
+    }
+
+    int main(){
+        student stu;
+        stu.age = 16;
+        stu.name = "zhangsan";
+        stu.score = 99;
+
+        //1.函数里面调用结构体有两种方法，一种是值传递printStu(stu),另一种是地址传递printStu(&stu)
+        //2.值传递会把整个结构体复制一份，如果数据量较大的时候会占用较多的空间，不推荐使用，一般采用地址传递，因为一个指针只占4个字节
+        printStu(&stu);
+
+        return 0;
+    }
+    
+    运行结果：name:zhangsan  age:16  score:99
