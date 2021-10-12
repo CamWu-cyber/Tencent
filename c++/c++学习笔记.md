@@ -95,7 +95,7 @@
 ## 结构体
 ***
 
-#### 结构体+指针
+#### 结构体指针
 1.结构体是自己定义的数据类型，里面可以包含了各种类型的成员；
 
 2.结构体传递到函数中的时候，推荐使用**地址传递**（节省空间，一个指针才4个字节）；
@@ -136,3 +136,48 @@
     }
     
     运行结果：name:zhangsan  age:16  score:99
+
+#### 结构体数组
+作用：将自定义的结构体放入数组中方便维护
+步骤：1.定义结构体；   2.创建结构体数组，理解成一个数组类型是结构体，数组的元素是一个个结构体对象。
+
+    #include <iostream>
+    using namespace std;
+
+    //结构体数组
+    //1、定义结构体
+    struct Student
+    {
+        string name;
+        int age;
+        int score;
+    };
+
+    void printArray(Student * stuArray, int len)
+    {
+        for(int i=0;i<len;i++)
+        {
+            cout << "name: " << stuArray[i].name
+                 << "  age: " << stuArray[i].age
+                 << "  score: " << stuArray[i].score << endl;
+        }
+    }
+
+    int main(){
+        //2、创建结构体数组
+        struct Student stuArray[3] = 
+        {
+            {"Alick",8,87},
+            {"Bob",9,89},
+            {"Cathy",10,90}
+        };
+
+        //3、给结构体数组中的元素赋值
+        stuArray[2].name = "Mark";
+        stuArray[2].age = 13;
+        stuArray[2].score = 91;
+
+        //4、遍历结构体数组
+        int len = sizeof(stuArray)/sizeof(stuArray[0]);
+        printArray(&stuArray[0], len);  //地址传递
+    }
