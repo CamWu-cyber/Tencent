@@ -182,3 +182,8 @@
         int len = sizeof(stuArray)/sizeof(stuArray[0]);
         printArray(&stuArray[0], len);  //地址传递
     }
+    
+    运行结果：
+    name: Alick  age: 8  score: 87
+    name: Bob  age: 9  score: 89
+    name: Mark  age: 13  score: 91
