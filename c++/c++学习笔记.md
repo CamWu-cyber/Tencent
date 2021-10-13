@@ -196,3 +196,22 @@
 5. 栈区存放函数的参数值，局部变量等，由编译器自动释放，所以函数运行完后函数的参数和里面的变量就不在内存中了。
 6. 堆区由程序员分配释放（delete），若程序员不释放，程序结束时由操作系统回收。
 7. c++中通过new关键字在堆区开辟内存。下面见详细代码。
+
+    #include<iostream>
+    using namespace std;
+
+    //1.利用new关键字，在堆区创建数据
+    //2.创建好数据后，它是把堆区的地址返回给你，所以需要用指针接收
+    int * func()
+    {
+        int* p = new int(10);
+        return p;
+    }
+
+    int main() {
+        int* p = func();
+        cout << *p << endl;
+
+        system("pause");
+        return 0;
+    }
