@@ -413,3 +413,68 @@ test(int a, int){}
 浅拷贝：简单的赋值拷贝操作。
 	
 深拷贝：在堆区重新申请空间，进行拷贝操作。
+		#include<iostream>
+		using namespace std;
+
+		class Person {
+		public:
+			// 第一种定义：无参（默认）构造函数
+			Person() {
+				cout << "无参构造函数" << endl;
+			}
+
+			// 第二种定义：有参构造函数
+			Person(int age, int height) {
+				cout << "有惨构造函数" << endl;
+				m_age = age;
+				m_height = new int(height); // 在堆区开辟空间
+			}
+
+			// 本来是可以拷贝函数的不写的，但是为了解决浅拷贝带来的问题，自己实现拷贝构造函数
+			// 第三种定义：拷贝构造函数
+			// 所谓拷贝构造函数就是把原本定义好的构造函数对象拷贝给一个新的对象，所以参数用const+引用传递
+			Person(const Person& p) {
+				cout << "拷贝构造函数" << endl;
+				// 如果不利用深拷贝在堆区创建新内存，会导致浅拷贝带来的重复释放同一堆区问题
+				m_age = p.m_age;
+				//m_height = p.m_height; // 编译器默认实现的就是这行代码，但是会报错，引起释放同一堆区的问题，所以下一行我们自己写一个深拷贝的操作
+				m_height = new int(*p.m_height);  // 拷贝的时候申请另外一块空间进行拷贝操作
+			}
+
+			// 析构函数
+			~Person() {
+				cout << "析构函数！" << endl;
+				// 将堆区开辟的数据释放掉
+				if (m_height != NULL)
+				{
+					delete m_height;
+					m_height = NULL; // 防止野指针出现，做一个置空的操作
+				}
+			}
+
+		public:
+			int m_age;
+			int* m_height; // 身高是在堆区创建的，所以需要用指针来接受它
+		};
+
+		void test01() {
+			Person p1(18, 160);
+			cout << "p1的年龄为：" << p1.m_age << " 身高为：" << *p1.m_height << endl;
+			Person p2(p1);
+			cout << "p2的年龄为：" << p2.m_age << " 身高为：" << *p2.m_height << endl;
+		}
+
+		int main() {
+			test01();
+			system("pause");
+			return 0;
+		}
+		运行结果：
+		无参构造函数
+		有参构造函数
+		p1的年龄为：18 身高为：160
+		拷贝构造函数
+		p2的年龄为：18 身高为：160
+		析构函数！
+		析构函数！
+		析构函数！
