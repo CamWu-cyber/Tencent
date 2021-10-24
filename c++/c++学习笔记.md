@@ -355,3 +355,36 @@ test(int a, int){}
 * 公共权限 public     类内可以访问 类外可以访问
 * 保护权限 protected  类内可以访问 类外不可以访问 儿子可以访问父亲的保护内容
 * 私有权限 private    类内可以访问 类外不可以访问 儿子不可以访问父亲的私有内容
+
+#### 成员属性私有化
+**优点1：** 将所有成员属性设置为private，再在public里面写读写的函数，这样就能自己控制读写的权限，避免了直接访问属性。
+**优点2：** 对于读写函数，里面可以设置条件来检测数据的有效性。
+		#include<iostream>
+		using namespace std;
+
+		class Person {
+		private:
+			string m_Name;
+
+		public:
+			// 读函数
+			string getName() {
+				return m_Name;
+			}
+			// 写函数
+			void setName(string name) {
+				m_Name = name;
+			}
+		};
+
+		int main() {
+			Person p;
+			p.m_Name // 报错，无法访问私有属性
+			
+			// 使用读写函数访问私有属性
+			string name = "李四";
+			p.setName(name);
+			cout << p.getName() << endl;
+		}
+
+		运行结果：李四
