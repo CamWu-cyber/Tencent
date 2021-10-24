@@ -390,7 +390,7 @@ test(int a, int){}
 		运行结果：李四
 
 	
-## 类和对象-对象特性-构造函数和析构函数
+## 对象的初始化和清理-构造函数和析构函数
 
 * 构造函数：主要作用在于创建对象时为对象成员属性赋值，构造函数由编译器自动调用，无需手动调用。
 * 析构函数：主要作用在于对象**销毁前**系统自动调用，执行一些清理工作。
@@ -478,3 +478,49 @@ test(int a, int){}
 		析构函数！
 		析构函数！
 		析构函数！
+
+#### 初始化列表（感觉不常用）
+作用：c++提供了初始化列表语法，用来初始化属性。
+语法：构造函数():属性1(值1)，属性2（值2），属性3（值3）...{}
+		#include<iostream>
+		using namespace std;
+
+		class Person {
+		public:
+			////传统初始化方式，在构造函数中初始化
+			//Person(int a, int b, int c)
+			//{
+				//m_A = a;
+				//m_B = b;
+				//m_C = c;
+			//}
+
+			// 方式二：通过初始化列表方式初始化属性
+			Person(int a, int b, int c) :m_A(a), m_B(b), m_C(c)
+			{
+
+			}
+
+			int m_A;
+			int m_B;
+			int m_C;
+		};
+
+		void test01() {
+			//Person p(10, 20, 30);
+			Person p(30, 20, 10);
+			cout << "m_A = " << p.m_A << endl;
+			cout << "m_B = " << p.m_B << endl;
+			cout << "m_C = " << p.m_C << endl;
+		}
+
+		int main() {
+			test01();
+			system("pause");
+			return 0;
+		}
+
+		运行结果：
+		m_A = 30
+		m_B = 20
+		m_C = 10
