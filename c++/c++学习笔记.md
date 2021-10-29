@@ -531,3 +531,77 @@ test(int a, int){}
 
 #### 类对象作为类成员
 c++类中的成员可以是另一个类的对象，我们称该成员为*对象成员*
+例如：
+	class A ()
+	class B 
+	{
+		A a;
+	}
+B类中有对象a作为成员，a为*对象成员*
+那么当创建B对象时，A与B的构造和析构的顺序谁先谁后？
+结论：当其他类对象作为本类成员，构造时候先构造类对象，再构造自身，析构的顺序与构造相反
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//类对象作为类成员时如何定义和调用
+	//结论：当其他类对象作为本类成员，构造时候先构造类对象，再构造自身，析构的顺序与构造相反
+
+	//手机类
+	class Phone {
+	public:
+		// 在构造函数中对手机名称作赋值操作
+		Phone(string PName)
+		{
+			m_PName = PName;
+			cout << "手机类构造函数" << endl;
+		}
+
+		~Phone()
+		{
+			cout << "手机类析构函数" << endl;
+		}
+
+		//手机品牌名
+		string m_PName;
+	};
+
+	//人类
+	class Person {
+	public:
+		// 采用初始化列表的方法给成员属性赋值
+		// Phone m_Phone = pName 隐式转化法
+		Person(string name, string pName) : m_Name(name), m_Phone(pName)
+		{
+			cout << "人类构造函数" << endl;
+		}
+
+		~Person()
+		{
+			cout << "人类析构函数" << endl;
+		}
+
+		//姓名
+		string m_Name;
+		//手机
+		Phone m_Phone;
+	};
+
+	void test01() 
+	{
+		Person p("张三","iPhoneX");
+		cout << p.m_Name << "拿着：" << p.m_Phone.m_PName << endl;
+	}
+
+	int main() {
+		test01();
+		system("pause");
+		return 0;
+	}
+
+	运行结果：手机类构造函数
+		人类构造函数
+		张三拿着：iPhoneX
+		人类析构函数
+		手机类析构函数
