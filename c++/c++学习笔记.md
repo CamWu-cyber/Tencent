@@ -292,49 +292,49 @@
 1. 注意：引用作为函数返回值的时候不可以返回局部变量的引用，只能返回静态局部变量的引用。
 2. 把引用作为返回值的函数，也能当做左值使用。
 
-		#include<iostream>
-		using namespace std;
+	#include<iostream>
+	using namespace std;
 
-		// 引用作为函数返回值的时候，只要在函数定义的时候加&即可，return对应的变量即可。
+	// 引用作为函数返回值的时候，只要在函数定义的时候加&即可，return对应的变量即可。
 
-		//函数返回局部变量的引用
-		int& test01() {
-			int a = 10; //局部变量
-			return a;
-		}
+	//函数返回局部变量的引用
+	int& test01() {
+		int a = 10; //局部变量
+		return a;
+	}
 
-		//函数返回静态变量的引用
-		int& test02() {
-			static int a = 20; //
-			return a;
-		}
+	//函数返回静态变量的引用
+	int& test02() {
+		static int a = 20; //
+		return a;
+	}
 
-		int main() {
-			//不能返回局部变量的引用
-			int& ref = test01();
-			cout << "ref=  " << ref << endl; // 第一次结果正确，因为编译器做了保留
-			cout << "ref=  " << ref << endl; // 第二次结果错误，因为a的内存已经释放
+	int main() {
+		//不能返回局部变量的引用
+		int& ref = test01();
+		cout << "ref=  " << ref << endl; // 第一次结果正确，因为编译器做了保留
+		cout << "ref=  " << ref << endl; // 第二次结果错误，因为a的内存已经释放
 
-			//返回静态局部变量是可以的
-			int& ref2 = test02();
-			cout << "ref2=  " << ref2 << endl;
-			cout << "ref2=  " << ref2 << endl;
+		//返回静态局部变量是可以的
+		int& ref2 = test02();
+		cout << "ref2=  " << ref2 << endl;
+		cout << "ref2=  " << ref2 << endl;
 
-			//如果函数作左值，那么必须返回引用
-			test02() = 1000;  // 相当于a=1000，因为test02()返回的是a的引用
-			int& ref3 = test02();
-			cout << "ref3=  " << ref3 << endl;
+		//如果函数作左值，那么必须返回引用
+		test02() = 1000;  // 相当于a=1000，因为test02()返回的是a的引用
+		int& ref3 = test02();
+		cout << "ref3=  " << ref3 << endl;
 
-			system("pause");
-			return 0;
-		}
+		system("pause");
+		return 0;
+	}
 
-		运行结果：
-		ref=  10
-		ref=  2080151944
-		ref2=  20
-		ref2=  20
-		ref3=  1000
+	运行结果：
+	ref=  10
+	ref=  2080151944
+	ref2=  20
+	ref2=  20
+	ref3=  1000
 
 ## 函数高级用法
 #### 函数默认参数
@@ -359,35 +359,36 @@ test(int a, int){}
 #### 成员属性私有化
 **优点1：** 将所有成员属性设置为private，再在public里面写读写的函数，这样就能自己控制读写的权限，避免了直接访问属性。
 **优点2：** 对于读写函数，里面可以设置条件来检测数据的有效性。
-		#include<iostream>
-		using namespace std;
 
-		class Person {
-		private:
-			string m_Name;
+	#include<iostream>
+	using namespace std;
 
-		public:
-			// 读函数
-			string getName() {
-				return m_Name;
-			}
-			// 写函数
-			void setName(string name) {
-				m_Name = name;
-			}
-		};
+	class Person {
+	private:
+		string m_Name;
 
-		int main() {
-			Person p;
-			p.m_Name // 报错，无法访问私有属性
-			
-			// 使用读写函数访问私有属性
-			string name = "李四";
-			p.setName(name);
-			cout << p.getName() << endl;
+	public:
+		// 读函数
+		string getName() {
+			return m_Name;
 		}
+		// 写函数
+		void setName(string name) {
+			m_Name = name;
+		}
+	};
 
-		运行结果：李四
+	int main() {
+		Person p;
+		p.m_Name // 报错，无法访问私有属性
+
+		// 使用读写函数访问私有属性
+		string name = "李四";
+		p.setName(name);
+		cout << p.getName() << endl;
+	}
+
+	运行结果：李四
 
 	
 ## 对象的初始化和清理-构造函数和析构函数
@@ -413,115 +414,116 @@ test(int a, int){}
 浅拷贝：简单的赋值拷贝操作。
 	
 深拷贝：在堆区重新申请空间，进行拷贝操作。
-		#include<iostream>
-		using namespace std;
+	
+	#include<iostream>
+	using namespace std;
 
-		class Person {
-		public:
-			// 第一种定义：无参（默认）构造函数
-			Person() {
-				cout << "无参构造函数" << endl;
-			}
-
-			// 第二种定义：有参构造函数
-			Person(int age, int height) {
-				cout << "有惨构造函数" << endl;
-				m_age = age;
-				m_height = new int(height); // 在堆区开辟空间
-			}
-
-			// 本来是可以拷贝函数的不写的，但是为了解决浅拷贝带来的问题，自己实现拷贝构造函数
-			// 第三种定义：拷贝构造函数
-			// 所谓拷贝构造函数就是把原本定义好的构造函数对象拷贝给一个新的对象，所以参数用const+引用传递
-			Person(const Person& p) {
-				cout << "拷贝构造函数" << endl;
-				// 如果不利用深拷贝在堆区创建新内存，会导致浅拷贝带来的重复释放同一堆区问题
-				m_age = p.m_age;
-				//m_height = p.m_height; // 编译器默认实现的就是这行代码，但是会报错，引起释放同一堆区的问题，所以下一行我们自己写一个深拷贝的操作
-				m_height = new int(*p.m_height);  // 拷贝的时候申请另外一块空间进行拷贝操作
-			}
-
-			// 析构函数
-			~Person() {
-				cout << "析构函数！" << endl;
-				// 将堆区开辟的数据释放掉
-				if (m_height != NULL)
-				{
-					delete m_height;
-					m_height = NULL; // 防止野指针出现，做一个置空的操作
-				}
-			}
-
-		public:
-			int m_age;
-			int* m_height; // 身高是在堆区创建的，所以需要用指针来接受它
-		};
-
-		void test01() {
-			Person p1(18, 160);
-			cout << "p1的年龄为：" << p1.m_age << " 身高为：" << *p1.m_height << endl;
-			Person p2(p1);
-			cout << "p2的年龄为：" << p2.m_age << " 身高为：" << *p2.m_height << endl;
+	class Person {
+	public:
+		// 第一种定义：无参（默认）构造函数
+		Person() {
+			cout << "无参构造函数" << endl;
 		}
 
-		int main() {
-			test01();
-			system("pause");
-			return 0;
+		// 第二种定义：有参构造函数
+		Person(int age, int height) {
+			cout << "有惨构造函数" << endl;
+			m_age = age;
+			m_height = new int(height); // 在堆区开辟空间
 		}
-		运行结果：
-		无参构造函数
-		有参构造函数
-		p1的年龄为：18 身高为：160
-		拷贝构造函数
-		p2的年龄为：18 身高为：160
-		析构函数！
-		析构函数！
-		析构函数！
+
+		// 本来是可以拷贝函数的不写的，但是为了解决浅拷贝带来的问题，自己实现拷贝构造函数
+		// 第三种定义：拷贝构造函数
+		// 所谓拷贝构造函数就是把原本定义好的构造函数对象拷贝给一个新的对象，所以参数用const+引用传递
+		Person(const Person& p) {
+			cout << "拷贝构造函数" << endl;
+			// 如果不利用深拷贝在堆区创建新内存，会导致浅拷贝带来的重复释放同一堆区问题
+			m_age = p.m_age;
+			//m_height = p.m_height; // 编译器默认实现的就是这行代码，但是会报错，引起释放同一堆区的问题，所以下一行我们自己写一个深拷贝的操作
+			m_height = new int(*p.m_height);  // 拷贝的时候申请另外一块空间进行拷贝操作
+		}
+
+		// 析构函数
+		~Person() {
+			cout << "析构函数！" << endl;
+			// 将堆区开辟的数据释放掉
+			if (m_height != NULL)
+			{
+				delete m_height;
+				m_height = NULL; // 防止野指针出现，做一个置空的操作
+			}
+		}
+
+	public:
+		int m_age;
+		int* m_height; // 身高是在堆区创建的，所以需要用指针来接受它
+	};
+
+	void test01() {
+		Person p1(18, 160);
+		cout << "p1的年龄为：" << p1.m_age << " 身高为：" << *p1.m_height << endl;
+		Person p2(p1);
+		cout << "p2的年龄为：" << p2.m_age << " 身高为：" << *p2.m_height << endl;
+	}
+
+	int main() {
+		test01();
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	无参构造函数
+	有参构造函数
+	p1的年龄为：18 身高为：160
+	拷贝构造函数
+	p2的年龄为：18 身高为：160
+	析构函数！
+	析构函数！
+	析构函数！
 
 #### 初始化列表（感觉不常用）
 作用：c++提供了初始化列表语法，用来初始化属性。
 语法：构造函数():属性1(值1)，属性2（值2），属性3（值3）...{}
 		
-		#include<iostream>
-		using namespace std;
+	#include<iostream>
+	using namespace std;
 
-		class Person {
-		public:
-			////传统初始化方式，在构造函数中初始化
-			//Person(int a, int b, int c)
-			//{
-				//m_A = a;
-				//m_B = b;
-				//m_C = c;
-			//}
+	class Person {
+	public:
+		////传统初始化方式，在构造函数中初始化
+		//Person(int a, int b, int c)
+		//{
+			//m_A = a;
+			//m_B = b;
+			//m_C = c;
+		//}
 
-			// 方式二：通过初始化列表方式初始化属性
-			Person(int a, int b, int c) :m_A(a), m_B(b), m_C(c)
-			{
+		// 方式二：通过初始化列表方式初始化属性
+		Person(int a, int b, int c) :m_A(a), m_B(b), m_C(c)
+		{
 
-			}
-
-			int m_A;
-			int m_B;
-			int m_C;
-		};
-
-		void test01() {
-			//Person p(10, 20, 30);
-			Person p(30, 20, 10);
-			cout << "m_A = " << p.m_A << endl;
-			cout << "m_B = " << p.m_B << endl;
-			cout << "m_C = " << p.m_C << endl;
 		}
 
-		int main() {
-			test01();
-			system("pause");
-			return 0;
-		}
+		int m_A;
+		int m_B;
+		int m_C;
+	};
 
-		运行结果：
-		m_A = 30
-		m_B = 20
-		m_C = 10
+	void test01() {
+		//Person p(10, 20, 30);
+		Person p(30, 20, 10);
+		cout << "m_A = " << p.m_A << endl;
+		cout << "m_B = " << p.m_B << endl;
+		cout << "m_C = " << p.m_C << endl;
+	}
+
+	int main() {
+		test01();
+		system("pause");
+		return 0;
+	}
+
+	运行结果：
+	m_A = 30
+	m_B = 20
+	m_C = 10
