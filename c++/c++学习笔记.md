@@ -460,6 +460,7 @@ test(int a, int){}
 	};
 
 	void test01() {
+		Person p;
 		Person p1(18, 160);
 		cout << "p1的年龄为：" << p1.m_age << " 身高为：" << *p1.m_height << endl;
 		Person p2(p1);
