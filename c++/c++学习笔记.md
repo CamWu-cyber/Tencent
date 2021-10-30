@@ -741,3 +741,60 @@ this指针的用途：
 * 在类的非静态成员函数中返回对象本身，可使用return *this（因为this本来指向的就是对象，解引用后返回的就是对象本身）
 
 ![this](https://github.com/CamWu-cyber/Tencent/blob/main/c%2B%2B/images/this.png)
+
+	#include<iostream>
+	using namespace std;
+
+	class Person {
+	public:
+		//命名冲突，此时编译器认为三个age是同一个
+		//解决方案有两个
+		//1、一般成员变量的命名前面都会加m_，表示member，改成int m_Age
+		//正确的命名方式可以少许多麻烦
+		//2、改写成this->age = age;
+		Person(int age)
+		{	
+			//this指针指向 p1
+			this->age = age;
+		}
+
+		//传入p的引用
+		//返回p2的引用
+		Person& PersonAddAge(Person& p)
+		{
+			this->age += p.age;
+
+			//this指向p2的指针，而*this指向的就是p2这个对象本体
+			return *this;
+		}
+
+		int age;
+	};
+
+	//1、解决名称冲突
+	void test01()
+	{
+		Person p1(18);
+		cout << "p1的年龄为： " << p1.age << endl;
+	}
+
+	//2、返回对象本身用*this
+	void test02()
+	{
+		Person p1(10);
+
+		Person p2(10);
+		p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1); //链式编程思想
+		cout << "p2的年龄为： " << p2.age << endl;
+	}
+
+	int main() {
+		test01();
+		test02();
+
+		system("pause");
+		return 0;
+	}
+
+	运行结果:p1的年龄为： 18
+		 p2的年龄为： 40
