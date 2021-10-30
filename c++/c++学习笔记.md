@@ -801,7 +801,48 @@ this指针的用途：
 
 #### 空指针访问成员函数
 C++中空指针也可以调用成员函数，但是也要注意有没有用调用成员变量，因为调用成员变量的时候会用到this指针，而此时this指针为空，是无法调用成员变量的，会报错。
-
 &nbsp;
-	
 如果用到this指针，需要加以判断保证代码的健壮性
+&nbsp;
+
+	#include<iostream>
+	using namespace std;
+
+	class Person {
+	public:
+		void showClassName()
+		{
+			cout << "this is Person class" << endl;
+		}
+
+		void showPersonAge()
+		{	
+			//在成员变量里面都默认加了this指针的
+			//报错的原因是因为传入的指针是NULL
+
+			//为了让代码不崩，需要对this指针进行判断
+			if (this == NULL)
+			{
+				return;
+			}
+
+			cout << "age = " << m_Age << endl;
+		}
+
+		int m_Age;
+	};
+
+	void test01()
+	{	
+		//用空指针调用两个成员函数
+		//调用第一个函数的时候没问题，第二个函数的时候就报错，区别在于第二个函数里面用到了成员变量m_Age
+		Person* p = NULL;
+		p->showClassName();
+		p->showPersonAge();
+	}
+
+	int main() {
+		test01();
+		system("pause");
+		return 0;
+	}
