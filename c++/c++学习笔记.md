@@ -861,6 +861,7 @@ C++中空指针也可以调用成员函数，但是也要注意有没有用调�
 * 常对象的成员属性也不可以修改，除非属性前加了mutable
 * 常对象只能调用常函数
 
+	
 	#include<iostream>
 	using namespace std;
 
