@@ -739,3 +739,5 @@ this指针不需要定义，直接使用即可
 this指针的用途：
 * 当形参和成员变量同名时，可用this指针来区分
 * 在类的非静态成员函数中返回对象本身，可使用return *this（因为this本来指向的就是对象，解引用后返回的就是对象本身）
+
+![this](https://github.com/CamWu-cyber/Tencent/blob/main/c%2B%2B/images/this.png)
