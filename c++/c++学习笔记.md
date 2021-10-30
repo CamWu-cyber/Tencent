@@ -619,6 +619,7 @@ B类中有对象a作为成员，a为*对象成员*
 	- 所有对象共享同一个函数
 	- 静态成员函数只能访问静态成员变量
 	
+	
 	#include<iostream>
 	using namespace std;
 
