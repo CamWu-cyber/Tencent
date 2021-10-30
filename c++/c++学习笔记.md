@@ -668,6 +668,9 @@ demo:
 		return 0;
 	}
 
+        运行结果：static void func调用
+		 static void func调用
+
 ## C++对象模型和this指针
 #### 成员变量和成员函数分开存储
 在c++中，类内成员变量和成员函数分开存储。
