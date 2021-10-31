@@ -1117,7 +1117,7 @@ demo:
 	//跳转盘符 F:
 	//跳转文件路径 cd 具体路径下
 	//查看命令
-	//cl /dl reportSingleClassLayout类名 文件名
+	//cl /d1 reportSingleClassLayout类名 文件名
 
 	void test01()
 	{
