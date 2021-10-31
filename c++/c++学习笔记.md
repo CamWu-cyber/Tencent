@@ -1140,3 +1140,46 @@ demo:
 问题：当子类与父类出现同名的成员，如何通过子类对象，访问到子类或父类中同名的数据呢？
 * 访问子类同名成员 直接访问即可
 * 访问父类同名成员 需要加作用域
+
+demo:
+	#include<iostream>
+	using namespace std;
+
+	class Base {
+	public:
+		Base()
+		{
+			m_A = 100;
+		}
+
+		int m_A;
+	};
+
+	class Son : public Base {
+	public:
+		Son()
+		{
+			m_A = 200;
+		}
+
+		int m_A;
+	};
+
+	void test01()
+	{
+		Son s;
+		cout << "Son 下 m_A = " << s.m_A << endl;
+		//如果通过子类对象 访问到父类中同名成员，需要加作用域
+		cout << "Base 下 m_A = " << s.Base::m_A << endl;
+	}
+
+	int main()
+	{
+		test01();
+
+		system("pause");
+		return 0;
+	}
+        运行结果：
+	Son 下 m_A = 200
+        Base 下 m_A = 100
