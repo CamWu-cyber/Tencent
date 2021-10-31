@@ -1310,3 +1310,12 @@ demo:
 	Son - static void func()调用
 	Base - static void func()调用
 	Base - static void func(int a)调用
+
+#### 多继承语法
+C++允许**一个类继承多个类**
+
+语法：class 子类 : 继承方式 父类1, 继承方式 父类2...
+
+多继承可能会引发父类中同名成员出现，需要加作用域区分
+	
+**C++实际开发中不建议使用多继承**
