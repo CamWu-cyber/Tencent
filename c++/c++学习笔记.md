@@ -1205,8 +1205,8 @@ demo:
 		system("pause");
 		return 0;
 	}
-
-        运行结果：
+	
+	运行结果：
 	Son 下 m_A = 200
 	Base 下 m_A = 100
 	Son 下 func()调用
