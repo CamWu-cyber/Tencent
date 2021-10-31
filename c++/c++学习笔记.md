@@ -1152,7 +1152,15 @@ demo:
 		{
 			m_A = 100;
 		}
-
+		void func()
+		{
+			cout << "Base 下 func()调用" << endl;
+		}
+		//父类中函数重载了，如何访问函数呢？
+		void func(int a)
+		{
+			cout << "Base 下 func(int a)调用: "<< a << endl;
+		}
 		int m_A;
 	};
 
@@ -1162,7 +1170,10 @@ demo:
 		{
 			m_A = 200;
 		}
-
+		void func()
+		{
+			cout << "Son 下 func()调用" << endl;
+		}
 		int m_A;
 	};
 
@@ -1174,14 +1185,30 @@ demo:
 		cout << "Base 下 m_A = " << s.Base::m_A << endl;
 	}
 
+	void test02()
+	{
+		Son s;
+		s.func(); //直接调用 调用的是子类中的同名函数
+
+		//如何调用到父类中同名成员函数？
+		s.Base::func();
+
+		//如果子类中出现和父类同名的成员函数，子类的同名成员会隐藏掉父类中所有同名成员函数
+		//如果想访问到父类中被隐藏的同名成员函数，需要加作用域
+		s.Base::func(100);
+	}
+
 	int main()
 	{
 		test01();
-
+		test02();
 		system("pause");
 		return 0;
 	}
-        
-	运行结果：
+
+        运行结果：
 	Son 下 m_A = 200
 	Base 下 m_A = 100
+	Son 下 func()调用
+	Base 下 func()调用
+	Base 下 func(int a)调用: 100
