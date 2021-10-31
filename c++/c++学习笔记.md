@@ -1142,6 +1142,7 @@ demo:
 * 访问父类同名成员 需要加作用域
 
 demo:
+	
 	#include<iostream>
 	using namespace std;
 
@@ -1180,6 +1181,7 @@ demo:
 		system("pause");
 		return 0;
 	}
-        运行结果：
+        
+	运行结果：
 	Son 下 m_A = 200
         Base 下 m_A = 100
