@@ -1620,3 +1620,91 @@ demo:
 纯虚析构语法：
 * virtual ~类名() = 0;
 * 类名::~类名(){}
+
+demo:
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//虚析构和纯虚析构
+
+	class Animal
+	{
+	public:
+		Animal()
+		{
+			cout << "Animal构造函数调用" << endl;
+		}
+
+		//利用虚析构可以解决 父类指针释放子类指针对象时不干净的问题
+		/*virtual ~animal()
+		{
+			cout << "animal析构虚函数调用" << endl;
+		}*/
+
+		//纯虚析构  需要声明也需要实现
+		//有了纯虚析构后，这个类也属于抽象类，无法实例化对象
+		virtual ~Animal() = 0;
+
+		//纯虚函数
+		virtual void speak() = 0;
+	};
+
+	Animal::~Animal()
+	{
+		cout << "Animal 纯 析构虚函数调用" << endl;
+	}
+
+	class Cat :public Animal {
+	public:
+
+		//构造函数
+		//在堆区中创建name属性，然后用m_Name指针维护name属性
+		Cat(string name)
+		{	
+			cout << "Cat构造函数调用" << endl;
+			m_Name = new string(name);
+		}
+
+		//因为构造函数中在堆区创建了一个对象，所以还需要写一个析构函数来释放掉内存
+		~Cat()
+		{
+			if (m_Name != NULL)
+			{
+				cout << "Cat析构函数调用" << endl;
+				delete m_Name; //释放
+				m_Name = NULL; //好习惯，释放掉后再置空
+			}
+		}
+
+		void speak()
+		{
+			cout << *m_Name << "小猫在说话" << endl;
+		}
+
+		string* m_Name;
+	};
+
+	void test01()
+	{
+		Animal* animal = new Cat("Tom");
+		animal->speak();
+		//父类指针在析构时候，不会调用子类中析构函数，导致子类如果有堆区属性，会出现内存泄漏
+		//解决方式：父类析构函数前 加virtual 即转换成虚析构
+		delete animal;
+	}
+
+	int main() {
+		test01();
+
+		system("pause");
+		return 0;
+	}
+	
+	运行结果：
+	Animal构造函数调用
+	Cat构造函数调用
+	Tom小猫在说话
+	Cat析构函数调用
+	Animal 纯 析构虚函数调用
