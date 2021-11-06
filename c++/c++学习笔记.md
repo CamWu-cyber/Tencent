@@ -1434,3 +1434,55 @@ demo:
 **抽象类特点：**
 * 无法实例化对象
 * 子类必须重写抽象类中的纯虚函数，否则也属于抽象类
+
+demo:
+
+	#include<iostream>
+	using namespace std;
+
+	class Base {
+	public:
+
+		//纯虚函数
+		//只要有一个纯虚函数，这个类称为抽象类
+		//抽象函数特点：
+		//1、无法实例化对象
+		//2、抽象类的子类 必须要重写父类中的纯虚函数，否则也属于抽象类
+		virtual void func() = 0;
+	};
+
+	class Son : public Base {
+	public:
+		void func()
+		{
+			cout << "func函数调用" << endl;
+		}
+	};
+
+	void test01()
+	{
+		//Base b; //抽象类无法实例化对象，在栈区中不行
+		//new Base; //抽象类无法实例化对象，在堆区中不行
+
+		Son s; //子类必须重写父类中的纯虚函数，否则无法实例化对象
+
+		//使用父类指针指向子类对象
+		//new表示在堆区创建的对象，必须使用指针来接应
+		Base* base = new Son;
+		base->func();
+
+		//使用父类引用指向子类对象，此时子类对象是在栈区创建的
+		Base& b = s;
+		b.func();
+	}
+
+	int main() {
+		test01();
+
+		system("pause");
+		return 0;
+	}
+
+        运行结果：
+	func函数调用
+	func函数调用
