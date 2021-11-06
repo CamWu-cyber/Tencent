@@ -1482,7 +1482,7 @@ demo:
 		system("pause");
 		return 0;
 	}
-
-        运行结果：
+	
+	运行结果：
 	func函数调用
 	func函数调用
