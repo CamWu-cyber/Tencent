@@ -1802,6 +1802,9 @@ C++中对文件操作需要包含头文件<fstream>
 		ofs << "姓名：张三" << endl;
 		ofs << "性别：男" << endl;
 		ofs << "年龄：18" << endl;
+		
+		//5、关闭文件
+		ofs.close();
 	}
 
 	int main() {
