@@ -1907,3 +1907,8 @@ ifs.close()
 		system("pause");
 		return 0;
 	}
+	
+	运行结果：
+	姓名：张三
+	性别：男
+	年龄：18
