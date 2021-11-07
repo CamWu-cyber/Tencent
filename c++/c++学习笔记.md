@@ -1722,4 +1722,4 @@ demo:
 
 通过文件可以将数据持久化
 	
-C++中对文件操作需要包含头文件<table><tr><td bgcolor=yellow><fstream></td></tr></table>
+C++中对文件操作需要包含<table><tr><td bgcolor=yellow>头文件<fstream></td></tr></table>
