@@ -1914,7 +1914,6 @@ ifs.close()
 	年龄：18
 
 总结：
-	
 * 读文件可以利用ifstream，或者fstream类
 * 利用is_open函数可以判断文件是否打开成功
 * close关闭文件
