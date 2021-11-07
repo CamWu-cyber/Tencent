@@ -1781,3 +1781,34 @@ C++中对文件操作需要包含头文件<fstream>
 **注意：** 文件打开方式可以配合使用，利用 | 操作符
 
 **例如：** 用二进制方式写文件 ios::binary | ios::out
+
+	#include<iostream>
+	using namespace std;
+	#include<fstream> //头文件包含
+
+	//文本文件 写文件
+
+	void test01()
+	{
+		//1、包含头文件
+
+		//2、创建流对象
+		ofstream ofs;
+
+		//3、指定打开方式
+		ofs.open("test.txt", ios::out);
+
+		//4、写内容
+		ofs << "姓名：张三" << endl;
+		ofs << "性别：男" << endl;
+		ofs << "年龄：18" << endl;
+	}
+
+	int main() {
+		test01();
+
+		system("pause");
+		return 0;
+	}
+	
+        运行结果：在同一目录下生成了test.txt文件，里面的内容就是ofs写入的内容
