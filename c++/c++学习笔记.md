@@ -1930,8 +1930,8 @@ ifs.close()
 
 **语法:**
 	
-		template<typename T>
-		函数声明或定义
+	template<typename T>
+	函数声明或定义
 
 **解释:**
 
