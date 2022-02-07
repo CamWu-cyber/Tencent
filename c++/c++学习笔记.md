@@ -2282,3 +2282,11 @@ T --- 通用的数据类型，名称可以替换，通常为大写字母
 	T2的类型为：int
 	姓名：唐僧年龄：999
 	T的数据类型为：class Person<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int>
+	
+### 类模板与继承
+当类模板碰到继承时，需要注意以下几点：
+* 当子类继承的父类是一个类模板时，子类在声明的时候，要指定出父类中T的类型
+* 如果不指定，编译器无法给子类分配内存
+* 如果想要灵活指定出父类中的T的类型，子类也需变为类模板
+	
+
