@@ -2413,3 +2413,87 @@ STL容器就是将运用最广泛的一些数据结构实现出来
 	20
 	30
 	40
+	
+### vector存放自定义的数据类型
+	
+**示例：**
+	
+	#include <iostream>
+	using namespace std;
+	#include <vector>
+	#include<string>
+
+	//vector容器存放自定义数据
+	class Person
+	{
+	public:
+		Person(string name, int age)
+		{
+			this->m_Name = name;
+			this->m_Age = age;
+		}
+		string m_Name;
+		int m_Age;
+	};
+
+	void test01()
+	{
+		vector<Person>v;
+
+		Person p1("aaa", 10);
+		Person p2("bbb", 20);
+		Person p3("ccc", 30);
+		Person p4("ddd", 40);
+
+		//向容器中添加数据
+		v.push_back(p1);
+		v.push_back(p2);
+		v.push_back(p3);
+		v.push_back(p4);
+
+		//遍历容器中数据
+		for (vector<Person>::iterator it = v.begin(); it != v.end(); it++)
+		{	
+			//两种写法均可
+			//cout << "姓名：" << (*it).m_Name << "年龄：" << (*it).m_Age << endl;
+			cout << "姓名：" << it->m_Name << "年龄：" << it->m_Age << endl;
+		}
+	}
+
+	//存放自定义数据类型的指针
+	void test02()
+	{
+		vector<Person*>v;
+
+		Person p1("aaa", 10);
+		Person p2("bbb", 20);
+		Person p3("ccc", 30);
+		Person p4("ddd", 40);
+
+		//向容器中添加p1-p4的地址
+		v.push_back(&p1);
+		v.push_back(&p2);
+		v.push_back(&p3);
+		v.push_back(&p4);
+
+		//遍历容器
+		for (vector<Person*>::iterator it = v.begin(); it != v.end(); it++)
+		{
+			// 解引用的结果就是尖括号里的数据类型，此处是一个Person类的指针，那么想通过指针拿到属性，得在后面加上->
+			cout << "姓名：" << (*it)->m_Name << "年龄：" << (*it)->m_Age << endl;
+		}
+	}
+
+	int main() {
+		//test01();
+		test02();
+
+		system("pause");
+		return 0;
+	}
+	
+	运行结果：
+	姓名：aaa年龄：10
+	姓名：bbb年龄：20
+	姓名：ccc年龄：30
+	姓名：ddd年龄：40
