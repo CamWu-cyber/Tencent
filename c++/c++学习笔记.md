@@ -2555,3 +2555,66 @@ STL容器就是将运用最广泛的一些数据结构实现出来
 	2 3 4 5
 	3 4 5 6
 	4 5 6 7
+
+## STL常用容器
+### string容器
+#### string基本概念
+**本质：**
+	
+* string是C++风格的字符串，而string本质上是一个类
+* char*是C语言的字符串
+
+**特点：**
+	
+string类内部封装了很多成员方法
+	
+例如：查找find，拷贝copy, 删除delete，替换replace，插入insert
+	
+string管理char*所分配的内存，不用担心复制越界和取值越界等，由类内部进行负责
+	
+#### string构造函数
+构造函数原型：
+	
+* string();                 //无参构造。创建一个空的字符串 例如：string str;
+* string(const char* s);     //相当于出入C语言的字符串来构造C++的字符串。使用字符串s初始化
+* string(const string& str);  //拷贝构造。用一个已知的string对象来构造一个新的string对象
+* string(int n, char c);      //使用n个字符c初始化
+	
+**实例：**
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//string的构造函数
+
+	//string();                 //无参构造。创建一个空的字符串 例如：string str;
+	//string(const char* s);     //相当于出入C语言的字符串来构造C++的字符串。使用字符串s初始化
+	//string(const string& str);  //拷贝构造。用一个已知的string对象来构造一个新的string对象
+	//string(int n, char c);      //使用n个字符c初始化
+
+	void test01() 
+	{
+		string s1;   //无参
+
+		const char* str = "hello world"; 
+		string s2(str);
+		cout << "s2 = " << s2 << endl;
+
+		string s3(s2);    //拷贝构造
+		cout << "s3 = " << s3 << endl;
+
+		string s4(10, 'a');
+		cout << "s4 = " << s4 << endl;
+	}
+
+	int main() {
+		test01();
+
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	s2 = hello world
+	s3 = hello world
+	s4 = aaaaaaaaaa
