@@ -2275,9 +2275,8 @@ T --- 通用的数据类型，名称可以替换，通常为大写字母
 		system("pause");
 		return 0;
 	}
-	
-        运行结果：
-        姓名：孙悟空年龄：999
+	运行结果：
+	姓名：孙悟空年龄：999
 	姓名：猪八戒年龄：999
 	T1的类型为：class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >
 	T2的类型为：int
