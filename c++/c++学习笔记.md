@@ -2182,3 +2182,104 @@ T --- 通用的数据类型，名称可以替换，通常为大写字母
 	
 总结：类模板和函数模板语法相似，在声明模板template后面加类，此类称为类模板
 
+### 类模板与函数模板区别
+* 类模板没有自动类型推导的使用方式
+* 类模板在模板参数列表中可以有默认参数
+	
+### 类模板中成员函数创建时机
+类模板中成员函数和普通类中成员函数创建时机是有区别的：
+* 普通类中的成员函数一开始就会创建并编译
+* 类模板中的成员函数在调用时才创建，一开始不会创建所以编译都会通过，调用后编译器才会去判断是否调用正确
+
+### 类模板对象做函数参数
+类模板实例化出的对象，向函数传参的方式，一共有三种：
+* 指定传入类型 --- 直接显示对象的数据类型           **最常用**
+* 参数模板化   --- 将对象中的参数变为模板进行传递
+* 整个类模板化 --- 将这个对象类型 模板化进行传递
+
+**示例：**
+
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//类模板对象做函数参数
+
+	template<class T1, class T2>
+	class Person
+	{
+	public:
+		Person(T1 name, T2 age)
+		{
+			this->m_Name = name;
+			this->m_Age = age;
+		}
+
+		void showPerson()
+		{
+			cout << "姓名：" << this->m_Name << "年龄：" << this->m_Age << endl;
+		}
+
+		T1 m_Name;
+		T2 m_Age;
+	};
+
+	//1.指定传入类型
+	void printPerson1(Person<string, int>&p)
+	{
+		p.showPerson();
+	}
+
+	void test01()
+	{
+		Person<string, int>p("孙悟空", 999);
+		printPerson1(p);
+	}
+
+	//2.参数模板化
+	template<class T1, class T2>
+	void printPerson2(Person<T1, T2>&p)
+	{
+		p.showPerson();
+		cout << "T1的类型为：" << typeid(T1).name() << endl;   //显示模板类型的名称，注意：string类型的名字很长
+		cout << "T2的类型为：" << typeid(T2).name() << endl;
+	}
+
+	void test02()
+	{
+		Person<string, int>p("猪八戒", 999);
+		printPerson2(p);
+	}
+
+
+	//3.整个类模板化
+	template<class T>
+	void printPerson3(T &p)
+	{
+		p.showPerson();
+		cout << "T的数据类型为：" << typeid(T).name() << endl;
+	}
+
+	void test03()
+	{
+		Person<string, int>p("唐僧", 999);
+		printPerson3(p);
+	}
+
+
+	int main() {
+		test01();
+		test02();
+		test03();
+
+		system("pause");
+		return 0;
+	}
+	
+        运行结果：
+        姓名：孙悟空年龄：999
+	姓名：猪八戒年龄：999
+	T1的类型为：class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >
+	T2的类型为：int
+	姓名：唐僧年龄：999
+	T的数据类型为：class Person<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int>
