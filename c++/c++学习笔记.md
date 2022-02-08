@@ -2675,7 +2675,7 @@ string管理char*所分配的内存，不用担心复制越界和取值越界等
 		system("pause");
 		return 0;
 	}
-       运行结果：
+	运行结果：
 	str1 = hello world
 	str2 = hello world
 	str3 = a
