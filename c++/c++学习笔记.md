@@ -2684,3 +2684,53 @@ string管理char*所分配的内存，不用担心复制越界和取值越界等
 	str6 = hello
 	str7 = wwwwwwwwww
 	
+#### 字符串的查找和替换
+* find查找是从左往右，rfind从右往左
+* find找到字符串后返回查找的第一个字符位置，找不到返回-1
+* replace在替换时，要指定从哪个位置起，多少个字符，替换成什么样的字符串
+	
+**示例：**
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//1.查找 find元素第一次出现的位置
+	void test01()
+	{
+		string str1 = "abcdefgde";
+		int pos = str1.find("de");
+		if (pos == -1)
+		{
+			cout << "未找到字符串" << endl;
+		}
+		else {
+			cout << "pos = " << pos << endl;
+		}
+
+		//rfind 和 find 区别
+		//rfind从右往左查找   find从左往右查
+		pos = str1.rfind("de");
+		cout << "pos = " << pos << endl;
+	}
+
+	//2.替换
+	void test02()
+	{
+		string str1 = "abcdefg";
+		//从1号位置起，3个字符 替换为“1111”
+		str1.replace(1, 3, "1111");
+		cout << "str1 = " << str1 << endl;
+	}
+
+	int main()
+	{
+		test01();
+		test02();
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	pos = 3
+	pos = 7
+	str1 = a1111efg
