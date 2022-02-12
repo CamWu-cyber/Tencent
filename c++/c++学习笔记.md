@@ -2829,3 +2829,7 @@ string中单个字符存取有两种方式
 	h e l l o
 	h e l l o
 	str = xxllo
+	
+总结：string字符串中单个字符存取有两种方式，利用[] 或 at
+
+#### string插入和删除
