@@ -2857,7 +2857,7 @@ string中单个字符存取有两种方式
 		cout << "str = " << str << endl;
 
 		//删除
-		str.erase(1, 3);
+		str.erase(1, 3);    //从 1 号位置开始删除 3 个字符
 		cout << "str = " << str << endl;
 	}
 
