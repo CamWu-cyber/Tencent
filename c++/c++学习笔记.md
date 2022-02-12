@@ -2779,3 +2779,53 @@ string管理char*所分配的内存，不用担心复制越界和取值越界等
 	}
 	运行结果：
 	str1 大于 str2
+
+#### string字符存取
+
+string中单个字符存取有两种方式
+* char& operator[](int n);   //通过[]方式取字符
+* char& at(int n);           //通过at方法获取字符
+	
+**示例：**
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//string字符存取
+
+	void test01()
+	{
+		string str = "hello";
+
+		//1.通过 []访问单个字符
+		for (int i = 0; i < str.size(); i++)
+		{
+			cout << str[i] << " ";
+		}
+		cout << endl;
+
+		//2.通过 at 访问单个字符
+		for (int i = 0; i < str.size(); i++)
+		{
+			cout << str.at(i) << " ";
+		}
+		cout << endl;
+
+		//修改单个字符
+		str[0] = 'x';
+		str.at(1) = 'x';
+		cout << "str = " << str << endl;
+	}
+
+	int main()
+	{
+		test01();
+
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	h e l l o
+	h e l l o
+	str = xxllo
