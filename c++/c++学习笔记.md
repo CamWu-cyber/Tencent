@@ -2747,7 +2747,7 @@ string管理char*所分配的内存，不用担心复制越界和取值越界等
       
 **示例：**
       
-      	#include<iostream>
+      #include<iostream>
 	using namespace std;
 
 	//字符串比较
