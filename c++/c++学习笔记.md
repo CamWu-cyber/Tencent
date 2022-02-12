@@ -2873,3 +2873,53 @@ string中单个字符存取有两种方式
 	str = hello
 
 总结：插入和删除的起始下标都是从0开始
+
+#### string字串
+从字符串中获取想要的子串
+	
+**函数原型：**
+* string substr(int pos = 0, int n = npos) const;     //返回由pos开始的n个字符串组成的字符串
+
+**示例：**
+	
+	#include<iostream>
+	using namespace std;
+	#include<string>
+
+	//字符串 插入和删除
+	void test01()
+	{
+		string str = "abcdef";
+
+		string subStr = str.substr(1, 3);
+
+		cout << "subStr = " << subStr << endl;
+	}
+
+	//实用操作
+	void test02()
+	{
+		string email = "zhangsan@sina.com";
+
+		//从邮件地址中获取 用户名 信息
+		int pos = email.find("@");   // 8
+		cout << pos << endl;
+
+		string usrName = email.substr(0, pos);
+		cout << usrName << endl;
+	}
+
+	int main()
+	{
+		test01();
+		test02();
+
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	subStr = bcd
+	8
+	zhangsan
+	
+总结：灵活运用求子串功能，可以在实际开发中获取有效信息。
