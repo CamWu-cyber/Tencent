@@ -3259,3 +3259,91 @@ string中单个字符存取有两种方式
 
 **函数原型：**
 * swap(vec);//将vec与本身的元素互换
+
+**示例：**
+	#include<iostream>
+	using namespace std;
+	#include<vector>
+
+	//vector容器互换
+
+	void printVector(vector<int>&v)
+	{
+		for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+		{
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+
+	//1.基本使用
+	void test01()
+	{
+		vector<int>v1;
+		for (int i = 0; i < 10; i++)
+		{
+			v1.push_back(i);
+		}
+
+		cout << "交换前：" << endl;
+		printVector(v1);
+
+		vector<int>v2;
+		for (int i = 10; i > 0; i--)
+		{
+			v2.push_back(i);
+		}
+		printVector(v2);
+
+		cout << "交换后：" << endl;
+		v1.swap(v2);
+		printVector(v1);
+		printVector(v2);
+	}
+
+	//2.实际用途
+	//巧用swap可以收缩内存空间
+	void test02()
+	{
+		vector<int>v;
+		for (int i = 0; i < 100000; i++)
+		{
+			v.push_back(i);
+		}
+
+		cout << "v的容量为：" << v.capacity() << endl;
+		cout << "v的大小为：" << v.size() << endl;
+
+		v.resize(3);     //重新指定大小，容量不变
+		cout << "v的容量为：" << v.capacity() << endl;
+		cout << "v的大小为：" << v.size() << endl;
+
+		//巧用swap收缩内存  容量也变为3了
+		//1.vector<int>(v)相当于用拷贝构造方式构造了一个匿名对象x，拷贝的对象为v,所以这个匿名对象x的容量和大小都为3
+		//2.在用swap把x和v进行交换，让v指向x的空间，让x指向v的空间，此时v的容量和大小就变为3了
+		//3.在程序运行结束后，系统会自动回收匿名对象创造的空间，不会造成浪费
+		vector<int>(v).swap(v);
+		cout << "v的容量为：" << v.capacity() << endl;
+		cout << "v的大小为：" << v.size() << endl;
+	}
+
+	int main() {
+		test01();
+		test02();
+
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	交换前：
+	0 1 2 3 4 5 6 7 8 9
+	10 9 8 7 6 5 4 3 2 1
+	交换后：
+	10 9 8 7 6 5 4 3 2 1
+	0 1 2 3 4 5 6 7 8 9
+	v的容量为：138255
+	v的大小为：100000
+	v的容量为：138255
+	v的大小为：3
+	v的容量为：3
+	v的大小为：3
