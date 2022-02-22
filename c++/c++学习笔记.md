@@ -3261,6 +3261,7 @@ string中单个字符存取有两种方式
 * swap(vec);//将vec与本身的元素互换
 
 **示例：**
+							
 	#include<iostream>
 	using namespace std;
 	#include<vector>
@@ -3356,6 +3357,7 @@ string中单个字符存取有两种方式
 * reserve(int len);//容器预留len个元素长度，预留位置不初始化，元素不可访问。
 	
 **示例：**
+	
 	#include<iostream>
 	using namespace std;
 	#include<vector>
