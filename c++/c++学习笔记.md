@@ -3407,4 +3407,61 @@ deque内部有个中控器，维护每段缓冲区中的内容，缓冲区中存
 					      
 中控器维护的是每个缓冲区的地址，使得使用deque时像一片连续的内存空间
 					      
+* deque容器的迭代器也支持随机访问的
 					      
+### deque构造函数
+**函数原型：**
+* deque<T> deqT;//默认构造形式
+* deque(beg, end);//构造函数将[beg, end]区间中的元素赋给本身
+* deque(n, elem);//构造函数将n个elem赋给本身
+* deque(const deque &deq);//拷贝构造函数
+					      
+**示例：**
+	
+	#include<iostream>
+	using namespace std;
+	#include<deque>
+
+	//deque构造函数
+
+	//若在形参的前面加上const，则d变为只读状态，相应的for中迭代器也要从iterator变为const_iterator才行
+	void printDeque(const deque<int>& d)
+	{
+		for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++)
+		{
+			//*it = 100;   容器中的数据不可以修改了
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+
+	void test01()
+	{
+		deque<int>d1;
+		for (int i = 0; i < 10; i++)
+		{
+			d1.push_back(i);
+		}
+		printDeque(d1);
+
+		deque<int>d2(d1.begin(), d1.end());
+		printDeque(d2);
+
+		deque<int>d3(10, 100);
+		printDeque(d3);
+
+		deque<int>d4(d3);
+		printDeque(d4);
+	}
+
+	int main() {
+		test01();
+
+		system("pause");
+		return 0;
+	}
+	运行结果：
+	0 1 2 3 4 5 6 7 8 9
+	0 1 2 3 4 5 6 7 8 9
+	100 100 100 100 100 100 100 100 100 100
+	100 100 100 100 100 100 100 100 100 100
