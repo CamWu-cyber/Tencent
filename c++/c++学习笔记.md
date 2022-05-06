@@ -292,49 +292,50 @@
 1. 注意：引用作为函数返回值的时候不可以返回局部变量的引用，只能返回静态局部变量的引用。
 2. 把引用作为返回值的函数，也能当做左值使用。
 
-	#include<iostream>
-	using namespace std;
 
-	// 引用作为函数返回值的时候，只要在函数定义的时候加&即可，return对应的变量即可。
+		#include<iostream>
+		using namespace std;
 
-	//函数返回局部变量的引用
-	int& test01() {
-		int a = 10; //局部变量
-		return a;
-	}
+		// 引用作为函数返回值的时候，只要在函数定义的时候加&即可，return对应的变量即可。
 
-	//函数返回静态变量的引用
-	int& test02() {
-		static int a = 20; //
-		return a;
-	}
+		//函数返回局部变量的引用
+		int& test01() {
+			int a = 10; //局部变量
+			return a;
+		}
 
-	int main() {
-		//不能返回局部变量的引用
-		int& ref = test01();
-		cout << "ref=  " << ref << endl; // 第一次结果正确，因为编译器做了保留
-		cout << "ref=  " << ref << endl; // 第二次结果错误，因为a的内存已经释放
+		//函数返回静态变量的引用
+		int& test02() {
+			static int a = 20; //
+			return a;
+		}
 
-		//返回静态局部变量是可以的
-		int& ref2 = test02();
-		cout << "ref2=  " << ref2 << endl;
-		cout << "ref2=  " << ref2 << endl;
+		int main() {
+			//不能返回局部变量的引用
+			int& ref = test01();
+			cout << "ref=  " << ref << endl; // 第一次结果正确，因为编译器做了保留
+			cout << "ref=  " << ref << endl; // 第二次结果错误，因为a的内存已经释放
 
-		//如果函数作左值，那么必须返回引用
-		test02() = 1000;  // 相当于a=1000，因为test02()返回的是a的引用
-		int& ref3 = test02();
-		cout << "ref3=  " << ref3 << endl;
+			//返回静态局部变量是可以的
+			int& ref2 = test02();
+			cout << "ref2=  " << ref2 << endl;
+			cout << "ref2=  " << ref2 << endl;
 
-		system("pause");
-		return 0;
-	}
+			//如果函数作左值，那么必须返回引用
+			test02() = 1000;  // 相当于a=1000，因为test02()返回的是a的引用
+			int& ref3 = test02();
+			cout << "ref3=  " << ref3 << endl;
 
-	运行结果：
-	ref=  10
-	ref=  2080151944
-	ref2=  20
-	ref2=  20
-	ref3=  1000
+			system("pause");
+			return 0;
+		}
+
+		运行结果：
+		ref=  10
+		ref=  2080151944
+		ref2=  20
+		ref2=  20
+		ref3=  1000
 
 ## 函数高级用法
 ### 函数默认参数
