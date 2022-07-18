@@ -11,11 +11,20 @@
 * Zi: 是子类，也被称为派生类
 
 
-        Fu.java
+Fu.java
         package com.itheima_01;
 
         public class Fu {
           public void show() {
             System.out.println("show方法被调用");
           }
+        }
+        
+Zi.java
+        package com.itheima_01;
+
+        public class Zi extends Fu{
+                public void method() {
+                        System.out.println("method方法被调用");
+                }
         }
