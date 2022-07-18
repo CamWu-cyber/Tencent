@@ -1024,6 +1024,7 @@ demo:
 * 私有继承
 	
 demo:
+
 	#include<iostream>
 	using namespace std;
 
