@@ -200,7 +200,54 @@ Demo.java
 * 当子类需要父类的功能，而功能主体子类有自己特有内容时，可以重写父类中的方法，这样，即沿袭了父类的功能，又定义了子类特有的内容
 * 练习：手机类和新手机类
 
-注解@Override
+@Override
 * 是一个注解（注解后面会学习到）
 * 可以帮助我们检查重写方法的方法声明的正确性
 
+Phone.java
+
+        package com;
+        /*
+         手机类
+         * */
+
+        public class Phone {
+                public void call(String name) {
+                        System.out.println("给" + name + "打电话");
+                }
+
+        }
+        
+NewPhone.java
+
+        package com;
+
+        public class NewPhone extends Phone{
+
+                @Override   // 注解作用：检测方法声明的正确性
+                public void call(String name) {
+                        System.out.println("开启视频功能");
+        //		System.out.println("给" + name + "打电话");
+                        super.call(name);
+                }
+
+
+        }
+
+Demo.java
+
+        package com;
+        /*
+         * 测试类
+         * */
+        public class Demo {
+                public static void main(String[] args) {
+                        //创建对象，调用方法
+                        Phone p = new Phone();
+                        p.call("林青霞");
+                        System.out.println("----------------");
+
+                        NewPhone np = new NewPhone();
+                        np.call("林青霞");
+                }
+        }
