@@ -47,3 +47,8 @@ Zi.java
                         z.show();
                 }
         }
+        
+        运行结果：
+        show方法被调用
+        method方法被调用
+        show方法被调用
