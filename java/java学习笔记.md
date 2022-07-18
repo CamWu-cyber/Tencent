@@ -133,3 +133,55 @@ Demo.java
 * 通过使用super关键字去显示的调用父类的带参构造方法
 * 在父类中自己提供一个无参构造方法
 - 推荐：自己给出无参构造方法
+
+Zi.java
+
+        package com.itheima_03;
+
+        public class Zi extends Fu{
+                public Zi() {
+        //		super();
+        //		super(20);
+                        System.out.println("Zi中无参构造方法被调用");
+                }
+
+                public Zi(int age) {
+        //		super();
+        //		super(20);
+                        System.out.println("Zi中有参构造方法被调用");
+                }
+        }
+        
+Fu.java
+
+        package com.itheima_03;
+
+        public class Fu {
+                /*
+                public Fu() {
+                        System.out.println("Fu中无参构造方法被调用");
+                }
+                */
+                public Fu() {}
+
+                public Fu(int age) {
+                        System.out.println("Fu中有参构造方法被调用");
+                }
+        }
+        
+Demo.java
+
+        package com.itheima_03;
+
+        public class Demo {
+                public static void main(String[] args) {
+                        //创建对象
+                        Zi z = new Zi();
+
+                        Zi z2 = new Zi(20);
+                }
+        }
+        
+        运行结果
+        Zi中无参构造方法被调用
+        Zi中有参构造方法被调用
