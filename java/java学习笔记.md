@@ -6,3 +6,4 @@
 
 继承的格式
 * 格式：public class 子类名 <font color=red>extends</font> 父类名
+<font color=red>我是红色</font>
