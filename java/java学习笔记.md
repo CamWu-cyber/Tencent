@@ -80,3 +80,40 @@ Zi.java
 super关键字的用法和this关键字的用法相似
 * this: 代表本类对象的引用。this关键字指向调用该方法的对象，一搬我们是在当前类中使用this关键字，所以我们常说this代表本类对象的引用。
 * super: 代表父类存储空间的标识（可以理解为父类对象引用）
+
+Fu.java
+
+        package com.itheima_02;
+
+        public class Fu {
+                public int age = 40;
+        }
+        
+ Zi.java
+ 
+        package com.itheima_02;
+
+        public class Zi extends Fu{
+                public int age = 20;
+
+                public void show() {
+                        int age = 30;
+                        System.out.println(age);
+                        // 我要访问本类的成员变量age，怎么办呢？
+                        System.out.println(this.age);
+                        // 我要访问父类的成员变量age，怎么办呢？
+                        System.out.println(super.age);
+                }
+        }
+        
+Demo.java
+
+        package com.itheima_02;
+
+        public class Demo {
+                public static void main(String[] args) {
+                        //创建对象，调用方法
+                        Zi z = new Zi();
+                        z.show();
+                }
+        }
