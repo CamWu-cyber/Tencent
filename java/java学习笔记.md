@@ -10,11 +10,11 @@
 * Fu: 是父类，也被称为基类、超类
 * Zi: 是子类，也被称为派生类
 
-  Fu.java
-  package com.itheima_01;
+    Fu.java
+    package com.itheima_01;
 
-  public class Fu {
-    public void show() {
-      System.out.println("show方法被调用");
+    public class Fu {
+      public void show() {
+        System.out.println("show方法被调用");
+      }
     }
-  }
