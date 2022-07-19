@@ -266,4 +266,4 @@ Demo.java
 * Java中类只支持单继承，不支持多继承
 * Java中类支持多层继承（比如：granddad类, father类, son类）
 
-![]()
+![1](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/1.png)
