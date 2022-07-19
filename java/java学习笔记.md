@@ -262,3 +262,8 @@ Demo.java
         开启视频功能
         给林青霞打电话
 
+## Java中继承的注意事项
+* Java中类只支持单继承，不支持多继承
+* Java中类支持多层继承（比如：granddad类, father类, son类）
+
+![]()
