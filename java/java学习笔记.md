@@ -318,3 +318,31 @@ final 修饰的特点
 final 修饰局部变量
 * 变量是基本类型：final修饰指的是基本类型的**数据值**不能发生改变
 * 变量是引用类型（其他类的成员变量）：final修饰指的是引用类型的**地址值**不能发生改变，但是地址里面的内容是可以发生改变的
+
+FinalDemo.java
+
+        package com.itheima_05;
+
+        public class FinalDemo {
+                public static void main(String[] args) {
+                        // final修饰基本类型变量
+                        final int age = 20;
+        //		age = 100;  不允许修改age的值
+                        System.out.println(age);
+
+                        // final修饰引用类型变量
+                        final Student s = new Student();
+                        s.age = 100;    // 地址的内容可以变
+                        System.out.println(s.age);
+
+        //		s = new Student();   // 地址不能变
+                }
+        }
+        
+Student.java
+
+        package com.itheima_05;
+
+        public class Student {
+                public int age = 20;
+        }
