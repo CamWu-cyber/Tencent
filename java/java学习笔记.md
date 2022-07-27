@@ -290,3 +290,12 @@ Demo.java
 * 自动建包：
 
         javac -d . HelloWorld.java               java com.itheima.HelloWorld
+
+### 导包的概述和使用
+使用不同包下的类时，使用的时候要写类的全路径，写起来太麻烦了
+
+为了简化带包的操作，Java就提供了导包的功能
+
+导包的格式：
+* 格式：import包名;
+* 范例：import cn.itcast.Teacher
