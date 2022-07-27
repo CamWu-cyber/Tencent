@@ -268,9 +268,8 @@ Demo.java
 
 ![1](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/1.png)
 
-# 修饰符
-## 包
-### 包的概述和使用
+# 包
+## 包的概述和使用
 包其实就是文件夹
 作用：对类进行分类管理
 
@@ -291,7 +290,7 @@ Demo.java
 
         javac -d . HelloWorld.java               java com.itheima.HelloWorld
 
-### 导包的概述和使用
+## 导包的概述和使用
 使用不同包下的类时，使用的时候要写类的全路径，写起来太麻烦了
 
 为了简化带包的操作，Java就提供了导包的功能
@@ -299,3 +298,7 @@ Demo.java
 导包的格式：
 * 格式：import包名;
 * 范例：import cn.itcast.Teacher
+
+# 修饰符
+## 权限修饰符（private, 默认, protected, public）
+![]()
