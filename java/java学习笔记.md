@@ -302,3 +302,15 @@ Demo.java
 # 修饰符
 ## 权限修饰符（private, 默认, protected, public）
 ![2](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/2.png)
+
+## 状态修饰符
+* final(最终态)
+* static(静态)
+
+### final
+final 关键字是最终的意思，可以修饰成员方法，成员变量，类
+
+final 修饰的特点
+* 修饰方法：表明该方法是最终方法，**不能被重写**
+* 修饰变量：表明该变量是常量，**不能再次被赋值**
+* 修饰类：表明该类是最终类，**不能被继承**
