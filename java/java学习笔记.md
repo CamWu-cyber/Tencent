@@ -469,3 +469,56 @@ AnimalDemo.java
 
 为什么成员变量和成员方法的访问不一样呢？
 * 因为成员方法有重写，而成员变量没有
+
+Animal.java
+
+        package com.itheima_08;
+
+        public class Animal {
+                public int age = 40;
+                public void eat() {
+                        System.out.println("动物吃东西");
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_08;
+
+        public class Cat extends Animal {
+                public int age = 20;
+                public int weight = 10;
+
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+
+                public void playGame() {
+                        System.out.println("猫捉迷藏");
+                }
+        }
+        
+AnimalDemo.java
+
+        package com.itheima_08;
+        /*
+         * 测试类
+         * */
+
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        // 有父类引用指向子类对象
+                Animal a = new Cat();
+
+                System.out.println(a.age);
+        //        System.out.println(a.weight);  编译报错，因为Animal类没有weight变量
+
+                a.eat();
+        //        a.playGame();  编译报错，因为Animal类没有playGame()方法
+                }
+        }
+        
+        运行结果：
+        40
+        猫吃鱼
