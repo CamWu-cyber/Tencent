@@ -426,3 +426,39 @@ StaticDemo.java
 * 有方法重写
 * 有父类引用指向子类对象（第二个例子里面 animal就是父类引用，猫就是子类对象）
 
+Animal.java
+
+        package com.itheima_07;
+
+        public class Animal {
+                public void eat() {
+                        System.out.println("动物吃东西");
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_07;
+
+        public class Cat extends Animal {
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
+        
+AnimalDemo.java
+
+        package com.itheima_07;
+        /*
+         * 多态
+         * */
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        // 有父类引用指向子类对象
+                        Animal a = new Cat();
+                        a.eat();
+                }
+        }
+        运行结果：
+        猫吃鱼
