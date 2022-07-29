@@ -543,3 +543,55 @@ AnimalDemo.java
         从父到子
         父类引用转为子类对象
         
+Animal.java
+
+        package com.itheima_09;
+
+        public class Animal {
+                public void eat() {
+                        System.out.println("动物吃东西");
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_09;
+
+        public class Cat extends Animal{
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+
+                public void playGame() {
+                        System.out.println("猫捉迷藏");
+                }
+        }
+        
+AnimalDemo.java
+
+        package com.itheima_09;
+
+        /*
+         * 向上转型
+                从子到父
+                父类引用指向子类对象
+
+        * 向下转型
+                从父到子
+                父类引用转为子类对象
+         * */
+
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        // 多态
+                        Animal a = new Cat(); // 向上转型
+                        a.eat();
+        //		a.playGame();  编译报错
+
+                        // 向下转型
+                        Cat c = (Cat)a;
+                        c.eat();
+                        c.playGame();
+                }
+        }
