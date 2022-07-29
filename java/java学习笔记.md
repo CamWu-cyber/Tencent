@@ -589,9 +589,13 @@ AnimalDemo.java
                         a.eat();
         //		a.playGame();  编译报错
 
-                        // 向下转型
+                        // 向下转型，就能访问到playGame()这个子类的特有方法啦
                         Cat c = (Cat)a;
                         c.eat();
                         c.playGame();
                 }
         }
+        运行结果：
+        猫吃鱼
+        猫吃鱼
+        猫捉迷藏
