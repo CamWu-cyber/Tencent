@@ -844,3 +844,64 @@ JumppingDemo.java
 &emsp;&emsp;&emsp;&emsp;默认修饰符：public abstract
 
 &emsp;&emsp;&emsp;&emsp;关于接口中的方法，JDK8和JDK9中有一些新特性，后面再讲解
+
+Inter.java
+
+        package com.itheima_13;
+
+        public interface Inter {
+                public int num = 10;
+                public final int num2 = 20;
+        //	public static final int num3 = 30;  前面的可以不写，直接写 int num3 = 30就行
+                int num3 = 30;
+
+        //	public Inter() {}  编译报错，因为接口没有构造方法
+
+        //	public void show() {}  编译报错，因为接口没有非抽象方法
+
+                public abstract void method();  // 接口都是抽象方法，不写public abstract也行
+                void show();
+        }
+        
+InterImpl.java
+
+        package com.itheima_13;
+        /*
+         * 接口的 实现类
+         */
+        public class InterImpl implements Inter {
+                public InterImpl() {
+                        super();  // 这个父类指的是Object
+                }
+
+                @Override
+                public void method() {
+                        System.out.println("method");
+                }
+
+                @Override
+                public void show() {
+                        System.out.println("show");
+                }
+        }
+
+InterfaceDemo.java
+
+        package com.itheima_13;
+        /*
+         * 测试类
+         */
+        public class InterfaceDemo {
+                public static void main(String[] args) {
+                        Inter i = new InterImpl();
+                        System.out.println(i.num);
+        //		i.num2 = 40;  被final修饰，不能赋值
+        //		i.num = 20;   没有被final修饰也不能赋值，是为什么呢？因为接口内没有变量，所有变量默认为常量
+                        System.out.println(i.num2);
+                        System.out.println(Inter.num);  // 能用类名访问，说明变量默认被static修饰的
+                }
+        }
+        运行结果：
+        10
+        20
+        10
