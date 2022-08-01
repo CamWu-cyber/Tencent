@@ -905,3 +905,113 @@ InterfaceDemo.java
         10
         20
         10
+
+## 猫和狗（接口版）
+
+纯demo，综合运用前面的知识点
+
+Animal.java
+
+        package com.itheima_14;
+        // 父类
+        public abstract class Animal {
+                private String name;
+                private int age;
+
+                public Animal() {
+
+                }
+
+                public Animal(String name, int age) {
+                        this.name = name;
+                        this.age = age;
+                }
+
+                public String getName() {
+                        return name;
+                }
+
+                public void setName(String name) {
+                        this.name = name;
+                }
+
+                public int getAge() {
+                        return age;
+                }
+
+                public void setAge(int age) {
+                        this.age = age;
+                }
+
+                public abstract void eat();
+        }
+
+Jumpping.java
+
+        package com.itheima_14;
+        // 接口
+        public interface Jumpping {
+                public abstract void jump();
+        }
+        
+Cat.java
+
+        package com.itheima_14;
+        // 子类
+        public class Cat extends Animal implements Jumpping{
+                public Cat() {
+
+                }
+
+                public Cat(String name, int age) {
+                        super(name, age);
+                }
+
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+
+                @Override
+                public void jump() {
+                        System.out.println("猫可以跳高了");
+                }
+        }
+
+AnimalDemo.java
+
+        package com.itheima_14;
+        // 测试类
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        // 创建对象，调用方法
+                        Jumpping j = new Cat();
+                        j.jump();
+                        System.out.println("-------");
+
+                        Animal a = new Cat();
+                        a.setName("加菲");
+                        a.setAge(5);
+                        System.out.println(a.getName()+","+a.getAge());
+                        a.eat();
+                        System.out.println("--------");
+
+                        // 实际用法，直接构造Cat类的对象
+                        Cat c = new Cat();
+                        c.setName("波斯");
+                        c.setAge(6);
+                        System.out.println(c.getName()+","+c.getAge());
+                        c.eat();
+                        c.jump();
+                }
+        }
+        
+        运行结果：
+        猫可以跳高了
+        -------
+        加菲,5
+        猫吃鱼
+        --------
+        波斯,6
+        猫吃鱼
+        猫可以跳高了
