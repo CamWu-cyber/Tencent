@@ -684,3 +684,59 @@ Dog.java
 
         可以有抽象方法：限定子类必须完成某些动作
         也可以有非抽象方法：提高代码复用性（由继承来保证）
+
+Animal.java
+
+        package com.itheima_11;
+        /*
+         * 抽象类
+         */
+        public abstract class Animal {
+                private int age = 20;
+                private final String city = "北京";
+
+                public Animal() {}  // 构造方法(无参)
+
+                public Animal(int age) {  // 构造方法（有参）
+                        this.age = age;
+                }
+
+                public void show() {
+                        age = 40;
+                        System.out.println(age);
+        //		city = "上海";   常量无法被重新赋值
+                        System.out.println(city);
+                }
+
+                public abstract void eat();   // 可以有抽象方法：限定子类必须完成某些动作
+        }
+
+Cat.java
+
+        package com.itheima_11;
+
+        public class Cat extends Animal{
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
+
+AnimalDemo.java
+
+        package com.itheima_11;
+        /*
+         * 测试类
+         */
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        Animal a = new Cat();
+                        a.eat();
+                        a.show();
+                }
+        }
+        
+        运行结果：
+        猫吃鱼
+        40
+        北京
