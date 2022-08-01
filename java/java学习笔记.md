@@ -869,7 +869,7 @@ InterImpl.java
         /*
          * 接口的 实现类
          */
-        public class InterImpl implements Inter {
+        public class InterImpl extends Object implements Inter {
                 public InterImpl() {
                         super();  // 这个父类指的是Object
                 }
