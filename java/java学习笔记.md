@@ -675,9 +675,9 @@ Dog.java
 ## 抽象类的成员特点
 * 成员变量
 
-&ensp;&ensp;可以是变量
+&emsp;&emsp;可以是变量
 
-&ensp;&ensp;也可以是常量
+&emsp;&emsp;也可以是常量
         
 * 构造方法
 
