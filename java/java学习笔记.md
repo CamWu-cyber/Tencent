@@ -771,3 +771,55 @@ Java中的接口更多的体现在对**行为的抽象**
 
 &emsp;&emsp;&emsp;&emsp;接口如何实例化呢？参照多态的方式，通过实现类对象实例化，这叫接口多态。
 
+&emsp;&emsp;&emsp;&emsp;多态的形式：具体类多态，**抽象类多态，接口多态.** (后两种最常用，所以加粗了)
+
+&emsp;&emsp;&emsp;&emsp;多态的前提：有继承或者实现关系；有方法重写；有父（类/接口）引用指向（子/实现）类对象
+
+* 接口的实现类
+
+&emsp;&emsp;&emsp;&emsp;要么重写接口中的所有抽象方法
+
+&emsp;&emsp;&emsp;&emsp;要么是抽象类
+
+Jumpping.java
+
+        package com.itheima_12;
+        /*
+         * 定义了一个接口
+         */
+        public interface Jumpping {
+                public abstract void jump();   // 定义了一个抽象方法
+        }
+        
+Cat.java
+
+        package com.itheima_12;
+
+        public class Cat implements Jumpping{
+                @Override
+                public void jump() {
+                        System.out.println("猫可以跳高了");
+                }
+        }
+        
+Dog.java
+
+        package com.itheima_12;
+
+        public abstract class Dog implements Jumpping{
+
+        }
+        
+JumppingDemo.java
+
+        package com.itheima_12;
+
+        public class JumppingDemo {
+                public static void main(String[] args) {
+        //		Jumpping j = new Jumpping();   接口不能被实例化，可以通过多态来实例化
+                        Jumpping j = new Cat();
+                        j.jump();
+                }
+        }
+        运行结果：
+        猫可以跳高了
