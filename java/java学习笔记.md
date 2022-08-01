@@ -823,3 +823,24 @@ JumppingDemo.java
         }
         运行结果：
         猫可以跳高了
+
+## 接口的成员特点
+* 成员变量
+
+&emsp;&emsp;&emsp;&emsp;只能是常量
+
+&emsp;&emsp;&emsp;&emsp;默认修饰符：**public static final**
+
+* 构造方法
+
+&emsp;&emsp;&emsp;&emsp;接口没有构造方法，因为接口主要是对行为进行抽象的，是没有具体存在
+
+&emsp;&emsp;&emsp;&emsp;一个类如果没有父类，默认继承自Object类
+
+* 成员方法
+
+&emsp;&emsp;&emsp;&emsp;只能是抽象方法
+
+&emsp;&emsp;&emsp;&emsp;默认修饰符：public abstract
+
+&emsp;&emsp;&emsp;&emsp;关于接口中的方法，JDK8和JDK9中有一些新特性，后面再讲解
