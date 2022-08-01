@@ -657,6 +657,9 @@ AnimalDemo.java
                         a.sleep();
                 }
         }
+        运行结果：
+        猫吃鱼
+        睡觉
         
 Dog.java
 
