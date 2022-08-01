@@ -468,7 +468,8 @@ AnimalDemo.java
 * 成员方法：编译看左边，执行看右边
 
 为什么成员变量和成员方法的访问不一样呢？
-* 因为成员方法有重写，而成员变量没有
+
+&emsp;&emsp;&emsp;&emsp;因为成员方法有重写，而成员变量没有
 
 Animal.java
 
@@ -526,7 +527,7 @@ AnimalDemo.java
 ## 多态的好处和弊端
 * 多态的好处：提高了程序的扩展性
 
-        * 具体体现：定义方法的时候，使用父类型作为参数，将来在使用的时候，使用具体的子类型参与操作
+&emsp;&emsp;&emsp;&emsp;具体体现：定义方法的时候，使用父类型作为参数，将来在使用的时候，使用具体的子类型参与操作
 
 * 多态的弊端：不能使用子类的特有功能 
 
@@ -537,13 +538,15 @@ AnimalDemo.java
 
 * 向上转型
         
-        从子到父
-        父类引用指向子类对象
+&emsp;&emsp;&emsp;&emsp;从子到父
+        
+&emsp;&emsp;&emsp;&emsp;父类引用指向子类对象
         
 * 向下转型
 
-        从父到子
-        父类引用转为子类对象
+&emsp;&emsp;&emsp;&emsp;从父到子
+        
+&emsp;&emsp;&emsp;&emsp;父类引用转为子类对象
         
 Animal.java
 
@@ -609,15 +612,17 @@ AnimalDemo.java
 ## 抽象类的特点
 * 抽象类和抽象方法必须使用abstract关键字修饰
 
-        public abstract class 类名 {}
-        public abstract void eat();
+&emsp;&emsp;&emsp;&emsp;public abstract class 类名 {}
+        
+&emsp;&emsp;&emsp;&emsp;public abstract void eat();
 
 * 抽象类中不一定有抽象方法，有抽象方法的类一定是抽象类
 * 抽象类不能实例化，抽象类如何实例化呢？参展多态的方式，通过子类对象实例化，这叫抽象类多态
 * 抽象类的子类
 
-        要么重写抽象类中的所有抽象方法
-        要么本身就是抽象类
+&emsp;&emsp;&emsp;&emsp;要么重写抽象类中的所有抽象方法
+        
+&emsp;&emsp;&emsp;&emsp;要么本身就是抽象类
         
 Animal.java
 
@@ -681,13 +686,15 @@ Dog.java
         
 * 构造方法
 
-        有构造方法，但是不能实例化
-        那么，构造方法的作用是什么呢？用于子类访问父类数据的初始化
+&emsp;&emsp;&emsp;&emsp;有构造方法，但是不能实例化
+
+&emsp;&emsp;&emsp;&emsp;那么，构造方法的作用是什么呢？用于子类访问父类数据的初始化
         
 * 成员方法
 
-        可以有抽象方法：限定子类必须完成某些动作
-        也可以有非抽象方法：提高代码复用性（由继承来保证）
+&emsp;&emsp;&emsp;&emsp;可以有抽象方法：限定子类必须完成某些动作
+        
+&emsp;&emsp;&emsp;&emsp;也可以有非抽象方法：提高代码复用性（由继承来保证）
 
 Animal.java
 
