@@ -779,7 +779,7 @@ Java中的接口更多的体现在对**行为的抽象**
 
 &emsp;&emsp;&emsp;&emsp;要么重写接口中的所有抽象方法
 
-&emsp;&emsp;&emsp;&emsp;要么是抽象类（看Doj.java）
+&emsp;&emsp;&emsp;&emsp;要么是抽象类（看Dog.java）
 
 Jumpping.java
 
