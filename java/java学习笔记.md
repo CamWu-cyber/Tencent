@@ -757,3 +757,17 @@ AnimalDemo.java
 接口就是一种**公共的规范标准**，只要符合规范标准，大家都可以通用
 
 Java中的接口更多的体现在对**行为的抽象**
+
+## 接口的特点
+* 接口用关键字interface修饰
+
+&emsp;&emsp;&emsp;&emsp;public interface 接口名 {}
+
+* 类实现接口用implements表示
+
+&emsp;&emsp;&emsp;&emsp;public class 类名 implements 接口名 {}
+
+* 接口不能实例化
+
+&emsp;&emsp;&emsp;&emsp;接口如何实例化呢？参照多态的方式，通过实现类对象实例化，这叫接口多态。
+
