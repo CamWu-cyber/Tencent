@@ -616,4 +616,55 @@ AnimalDemo.java
         要么重写抽象类中的所有抽象方法
         要么本身就是抽象类
         
+Animal.java
 
+        package com.itheima_10;
+        /*
+         * 抽象类
+         * */
+        public abstract class Animal {
+                // 抽象方法
+                public abstract void eat();
+
+                public void sleep() {
+                        System.out.println("睡觉");
+                }
+
+        }
+
+Cat.java
+
+        package com.itheima_10;
+
+        public class Cat extends Animal{
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
+        
+AnimalDemo.java
+
+        package com.itheima_10;
+        /*
+         * 测试类
+         * */
+        public class AnimalDemo {
+                public static void main(String[] args) {
+        //		Animal a = new Animal();  抽象类不能实例化
+                        Animal a = new Cat();
+                        a.eat();
+                        a.sleep();
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_10;
+
+        public class Cat extends Animal{
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
