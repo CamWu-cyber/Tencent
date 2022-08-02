@@ -1036,3 +1036,26 @@ AnimalDemo.java
         public interface Inter3 extends Inter1, Inter2 {
         
         }
+
+## 抽象类和接口的区别
+前两个是语法层面的区别，第三个才是重点
+
+* 成员区别
+
+&emsp;&emsp;&emsp;&emsp;抽象类&emsp;&emsp;&emsp;&emsp;有变量，有常量；有构造方法；有抽象方法，也有非抽象方法
+
+&emsp;&emsp;&emsp;&emsp;接口&emsp;&emsp;&emsp;&emsp;只有常量；只有抽象方法
+
+* 关系区别
+
+&emsp;&emsp;&emsp;&emsp;类与类&emsp;&emsp;&emsp;&emsp;继承关系，只能单继承
+
+&emsp;&emsp;&emsp;&emsp;类与接口&emsp;&emsp;&emsp;&emsp;实现关系，可以单实现，也可以多实现
+
+&emsp;&emsp;&emsp;&emsp;接口与接口&emsp;&emsp;&emsp;&emsp;继承关系，可以单继承，也可以多继承
+
+* 设计理念区别
+
+&emsp;&emsp;&emsp;&emsp;抽象类&emsp;&emsp;&emsp;&emsp;对类抽象，包括属性、行为
+
+&emsp;&emsp;&emsp;&emsp;接口&emsp;&emsp;&emsp;&emsp;对行为抽象，主要是行为
