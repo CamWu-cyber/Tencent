@@ -1025,6 +1025,14 @@ AnimalDemo.java
 
 &emsp;&emsp;&emsp;&emsp;实现关系，可以单实现，也可以多实现，还可以在继承一个类的同时实现多个接口
 
+        public class InterImpl extends Object implements Inter1, Inter2, Inter3 {
+        
+        }
+
 * 接口和接口的关系
 
 &emsp;&emsp;&emsp;&emsp;继承关系，可以单继承，也可以多继承（java中的多继承体现在接口中，c++多继承体现在类中）
+
+        public interface Inter3 extends Inter1, Inter2 {
+        
+        }
