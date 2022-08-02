@@ -1059,3 +1059,19 @@ AnimalDemo.java
 &emsp;&emsp;&emsp;&emsp;抽象类&emsp;&emsp;&emsp;&emsp;对类抽象，包括属性、行为
 
 &emsp;&emsp;&emsp;&emsp;接口&emsp;&emsp;&emsp;&emsp;对行为抽象，主要是行为
+
+门和警报的例子
+
+门：都有open()和close()两个动作，这个时候，我们可以分别使用抽象类和接口来定义这个抽象概念
+
+        // 抽象类
+        public abstract class Door {
+                public abstract void open();
+                public abstract void close();
+        }
+        
+        // 接口
+        public interface Door {
+                void open();
+                void close();
+        }
