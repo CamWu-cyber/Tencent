@@ -1075,3 +1075,26 @@ AnimalDemo.java
                 void open();
                 void close();
         }
+
+这个时候需要新增一个报警的功能，可以用接口定义报警的行文，同时用抽象类保留门的Open和close的属性
+
+        public interface Alram {
+                void alarm();
+        }
+        public abstract class Door {
+                public abstract void open();
+                public abstract void close();
+        }
+        public class AlarmDoor extends Door implements Alarm {
+                public void open() {
+                        //...
+                }
+                public void close() {
+                        //...
+                }
+                public void alarm() {
+                        //...
+                }
+        }
+        
+在这里，我们再次强调抽象类是对事物的抽象，而接口是对行为的抽象
