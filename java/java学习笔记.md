@@ -1359,7 +1359,8 @@ InnerDemo.java
                         // 当内部类改为private修饰的时候，此方法就失效了（其实，一般也不会使用这种方法）
         //		Outer.Inner oi = new Outer().new Inner();
         //		oi.show();
-
+                        
+                        // 一般做法
                         Outer o = new Outer();
                         o.method();
                 }
