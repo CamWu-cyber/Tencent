@@ -1291,3 +1291,24 @@ JumppingDemo.java
 内部类的访问特点
 * 内部类可以直接访问外部类的成员，包括私有
 * 外部类要访问内部类的成员，必须创建对象
+
+Outer.java
+
+        package com.itheima_18;
+
+        public class Outer {
+                private int num = 10;
+
+                public class Inner {
+                        public void show() {
+                                System.err.println(num);  // 内部类可以直接访问外部类的成员，包括私有
+                        }
+                }
+
+                public void method() {
+        //		show(); 编译报错，因为外部类无法直接访问内部类的成员，必须创建对象
+
+                        Inner i = new Inner();
+                        i.show();
+                }
+        }
