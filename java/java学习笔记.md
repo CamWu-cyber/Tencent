@@ -1269,3 +1269,22 @@ JumppingDemo.java
         运行结果：
         猫可以跳高了
         猫可以跳高了
+
+# 内部类
+## 内部类概述
+内部类：就是在一个类中定义一个类。举例：在一个类A的内部定义一个类B，类B就被称为内部类
+
+内部类的定义格式：
+
+        public class 类名{
+                修饰符 class 类名{
+                }
+        }
+        
+范例：
+
+        public class Outer{
+                public class Inner{
+                }
+        }
+        
