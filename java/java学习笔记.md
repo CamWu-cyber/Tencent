@@ -1098,3 +1098,57 @@ AnimalDemo.java
         }
         
 在这里，我们再次强调抽象类是对事物的抽象，而接口是对行为的抽象
+
+# 形参和返回值
+## 类名作为形参和返回值
+* 方法的形参是类名，其实需要的是该类的对象
+* 方法的返回值是类名，其实返回的是该类的对象
+
+Cat.java
+
+        package com.itheima_15;
+
+        public class Cat {
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
+        
+CatOperator.java
+
+        package com.itheima_15;
+
+        public class CatOperator {
+                // 方法的形参是类名
+                public void useCat(Cat c) { // Cat c = new Cat();
+                        c.eat();
+                }
+
+                // 方法的返回值是类名
+                public Cat getCat() {
+                        Cat c = new Cat();
+                        return c;
+                }
+        }
+
+CatDemo.java
+
+        package com.itheima_15;
+        /*
+         * 测试类
+         */
+        public class CatDemo {
+                public static void main(String[] args) {
+                        //创建操作类对象，并调用方法
+                        CatOperator co = new CatOperator();
+                        Cat c = new Cat();
+                        co.useCat(c);
+
+                        Cat c2 = co.getCat();
+                        c2.eat();
+                }
+        }
+        
+        运行结果：
+        猫吃鱼
+        猫吃鱼
