@@ -1312,3 +1312,57 @@ Outer.java
                         i.show();
                 }
         }
+
+## 成员内部类
+按照内部类在类中定义的位置不同，可以分为如下两种形式
+* 在类的成员位置：成员内部类
+* 在类的局部位置：局部内部类
+
+成员内部类，外界如何创建对象使用呢？
+* 格式：外部类名.内部类名 对象名 = 外部类对象.内部类对象;
+* 范例：Outer.Inner oi = new Outer().new Inner();
+* **注意：** 当内部类改为private修饰的时候，此方法失效。
+
+Outer.java
+
+        package com.itheima_19;
+
+        public class Outer {
+                private int num = 10;
+                // 内部类一般用private修饰符
+                // 可是这样会导致外界不能创建该内部类的对象了
+                // 一般的做法是在外部类中，创建一个方法，方法里面创建内部类的对象，从而访问内部类中的方法
+                private class Inner {
+                        public void show() {
+                                System.out.println(num);
+                        }
+                }
+
+                public void method() {
+                        Inner i = new Inner();
+                        i.show();
+                }
+        }
+
+InnerDemo.java
+
+        package com.itheima_19;
+        /*
+         * 测试类
+         */
+        public class InnerDemo {
+                public static void main(String[] args) {
+                        //创建内部类对象，并调用方法
+        //		Inner i = new Inner();  外界无法直接创建内部类对象
+
+                        // 当内部类改为private修饰的时候，此方法就失效了（其实，一般也不会使用这种方法）
+        //		Outer.Inner oi = new Outer().new Inner();
+        //		oi.show();
+
+                        Outer o = new Outer();
+                        o.method();
+                }
+        }
+        运行结果：
+        10
+
