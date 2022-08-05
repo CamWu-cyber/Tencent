@@ -1152,3 +1152,61 @@ CatDemo.java
         运行结果：
         猫吃鱼
         猫吃鱼
+
+## 抽象类名作为形参和返回值
+* 方法的形参是抽象类名，其实需要的是该抽象类的子类对象
+* 方法的返回值是抽象类名，其实返回的是该抽象类的子类对象
+
+Animal.java
+
+        package com.itheima_16;
+
+        public abstract class Animal {
+                public abstract void eat();  //抽象方法
+        }
+        
+AnimalOperator.java
+
+        package com.itheima_16;
+
+        public class AnimalOperator {
+                public void useAnimal(Animal a) { //相当于Animal a = new Cat();
+                        a.eat();
+                }
+
+                public Animal getAnimal() {
+                        Animal a = new Cat();
+                        return a;
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_16;
+
+        public class Cat extends Animal{
+                @Override
+                public void eat() {
+                        System.out.println("猫吃鱼");
+                }
+        }
+        
+AnimalDemo.java
+
+        package com.itheima_16;
+
+        public class AnimalDemo {
+                public static void main(String[] args) {
+                        //创建操作类对象，并调用方法
+                        AnimalOperator ao = new AnimalOperator();
+                        Animal a = new Cat();  // 抽象类无法创建对象，只能通过多态的方法创建子类的对象
+                        ao.useAnimal(a);
+
+                        Animal a2 = ao.getAnimal(); //相当于new Cat()
+                        a2.eat();
+                }
+        }
+        
+        运行结果：
+        猫吃鱼
+        猫吃鱼
