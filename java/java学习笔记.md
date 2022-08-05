@@ -1210,3 +1210,62 @@ AnimalDemo.java
         运行结果：
         猫吃鱼
         猫吃鱼
+
+## 接口名作为形参和返回值
+* 方法的形参是接口名，其实需要的是该接口的实现类对象
+* 方法的返回值是接口名，其实返回的是该接口的实现类对象
+
+Jumpping.java
+
+        package com.itheima_17;
+
+        public interface Jumpping {
+                void jump();
+        }
+        
+JumppingOperator.java
+
+        package com.itheima_17;
+
+        public class JumppingOperator {
+                public void useJumpping(Jumpping j) { //相当于Jumpping j = new Cat();
+                        j.jump();
+                }
+
+                public Jumpping getJumpping() {
+                        Jumpping j = new Cat();
+                        return j;
+                }
+        }
+        
+Cat.java
+
+        package com.itheima_17;
+
+        public class Cat implements Jumpping{
+                @Override
+                public void jump() {
+                        System.out.println("猫可以跳高了");
+                }
+        }
+        
+JumppingDemo.java
+
+        package com.itheima_17;
+        /*
+         * 测试类
+         */
+        public class JumppingDemo {
+                public static void main(String[] args) {
+                        //创建操作类对象，并调用方法
+                        JumppingOperator jo = new JumppingOperator();
+                        Jumpping j = new Cat();
+                        jo.useJumpping(j);
+
+                        Jumpping j2 = jo.getJumpping(); //相当于new Cat()
+                        j2.jump();
+                }
+        }
+        运行结果：
+        猫可以跳高了
+        猫可以跳高了
