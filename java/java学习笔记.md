@@ -1483,3 +1483,95 @@ OuterDemo.java
         匿名内部类
         匿名内部类
         匿名内部类
+
+## 匿名内部类在开发中的使用
+使用 匿名内部类 代替 不断新增的接口实现类对象，因为 匿名内部类 本质上就是一个**实现接口的匿名对象**。
+
+Jumpping.java
+
+        package com.itheima_03;
+        /*
+            跳高接口
+         */
+        public interface Jumpping { // new Cat(); new Dog();
+            void jump();
+        }
+        
+JumppingOperator.java
+
+        package com.itheima_03;
+        /*
+            接口操作类，里面有一个方法，方法的参数是接口名
+         */
+        public class JumppingOperatior {
+            public void method(Jumpping j) {
+                j.jump();
+            }
+        }
+        
+Cat.java
+
+        package com.itheima_03;
+
+        public class Cat implements Jumpping{
+            @Override
+            public void jump() {
+                System.out.println("猫可以跳高了");
+            }
+        }
+
+Dog.java
+
+        package com.itheima_03;
+
+        public class Dog implements Jumpping{
+            @Override
+            public void jump() {
+                System.out.println("狗可以跳高了");
+            }
+        }
+        
+JumppingDemo.java
+
+        package com.itheima_03;
+        /*
+            测试类
+         */
+        public class JumppingDemo {
+            // 需求：创建接口操作类的对象，调用method方法
+            public static void main(String[] args) {
+                JumppingOperatior jo = new JumppingOperatior();
+                Jumpping j = new Cat();
+                jo.method(j);
+                Jumpping j2 = new Dog();
+                jo.method(j2);
+                System.out.println("----------");
+                // 上面代码有个问题
+                // 随着接口实现类对象的不断增多，需要构造更多的接口实现类，非常繁琐
+                // 解决方案：用匿名内部类代替实现类对象，因为匿名内部类本质上就是一个对象
+
+                jo.method(new Jumpping() {
+                    @Override
+                    public void jump() {
+                        System.out.println("猫可以跳高了");
+                    }
+                });
+
+                jo.method(new Jumpping() {
+                    @Override
+                    public void jump() {
+                        System.out.println("狗可以跳高了");
+                    }
+                });
+
+            }
+
+        }
+        
+        运行结果：
+        猫可以跳高了
+        狗可以跳高了
+        ----------
+        猫可以跳高了
+        狗可以跳高了
+        
