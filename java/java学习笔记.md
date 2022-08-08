@@ -1429,3 +1429,57 @@ OuterDemo.java
  
 **本质：是一个继承了该类或者实现了该接口的子类匿名对象**
 
+Outer.java
+
+        package com.itheima_02;
+
+        public class Outer {
+            public void method() {
+                // 匿名内部类，实际上是一个对象
+                // 1.调用一次直接在对象后面加.show()即可，
+                new Inter() {
+                    @Override
+                    public void show() {
+                        System.out.println("匿名内部类");
+                    }
+                }.show();
+
+                // 2.如果想多次调用，需要用多态的形式赋值给Iner这个接口
+                Inter i = new Inter() {
+                    @Override
+                    public void show() {
+                        System.out.println("匿名内部类");
+                    }
+                };
+
+                // 接下来就可以多次调用show()方法了
+                i.show();
+                i.show();
+            }
+        }
+
+Inter.java
+
+        package com.itheima_02;
+
+        public interface Inter {
+            void show();
+        }
+        
+OuterDemo.java
+
+        package com.itheima_02;
+        /*
+            测试类
+         */
+        public class OuterDemo {
+            public static void main(String[] args) {
+                Outer o = new Outer();
+                o.method();
+            }
+        }
+        
+        运行结果：
+        匿名内部类
+        匿名内部类
+        匿名内部类
