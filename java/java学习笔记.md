@@ -1575,4 +1575,25 @@ JumppingDemo.java
         猫可以跳高了
         狗可以跳高了
         
-# 常用API
+# 基本类型包装类
+## 基本类型包装类概述
+将基本数据类型封装成对象的好处在于可以在对象中定义更多的功能方法操作该数据
+
+常用的操作之一：用基于数据类型与字符串之间的转换
+
+IntegerDemo.java
+
+        package itheima_04;
+        /*
+            基本类型包装类
+         */
+        public class IntegerDemo {
+            public static void main(String[] args) {
+                //需求：我要判断一个数据是否在 int 范围内
+                System.out.println(Integer.MIN_VALUE);
+                System.out.println(Integer.MAX_VALUE);
+            }
+        }
+        运行结果：
+        -2147483648
+        2147483647
