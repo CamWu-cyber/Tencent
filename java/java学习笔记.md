@@ -1642,3 +1642,53 @@ IntegerDemo.java
         运行结果：
         100
         100
+
+## int 和 String 的相互转换
+基本类型包装类的最常见操作就是：用于基本类型和字符串之间的相互转换
+
+1. int 转换为 String
+
+&emsp;&emsp;&emsp;&emsp;public static String valueOf(int i): 返回 int 参数的字符串表示形式。该方法是String类中的方法。
+
+2. String 转换为 int
+
+&emsp;&emsp;&emsp;&emsp;public static int parseInt(String s): 将字符串解析为 int 类型。该方法是Integer类中的方法。
+
+IntegerDemo.java
+
+        package com.itheima_05;
+        /*
+            int和String的互相转换
+         */
+        public class IntegerDemo {
+            public static void main(String[] args) {
+                // int to String
+                int num = 100;
+                // 方式1
+                String s1 = "" + num;
+                System.out.println(s1);
+                // 方式2
+                //public static String valueOf (int i)
+                String s2 = String.valueOf(num);
+                System.out.println(s2);
+                System.out.println("-----------");
+
+                // String to int
+                String s = "100";
+                // 方式1
+                // String --- Integer --- int
+                Integer i = Integer.valueOf(s);  // String to Integer
+                int x = i.intValue();            // Integer to int
+                System.out.println(x);
+                // 方式2
+                int y = Integer.parseInt(s);
+                System.out.println(y);
+            }
+        }
+        
+        运行结果：
+        100
+        100
+        -----------
+        100
+        100
