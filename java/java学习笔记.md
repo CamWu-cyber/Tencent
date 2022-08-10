@@ -1597,3 +1597,47 @@ IntegerDemo.java
         运行结果：
         -2147483648
         2147483647
+
+## Integer 类的概述和作用
+Inter: 包装一个对象中的原始类型int的值
+
+* 注意观察代码里面，有过时和未过时两种方法。
+* 过时采用的是构造方法，使用的时候需要用 new 关键字来构建对象；
+* 未过时采用的是静态方法，使用的时候不需要new，直接使用即可；
+
+IntegerDemo.java
+
+        package itheima_04;
+        /*
+            构造方法：
+                public Integer(int value)：根据 int 值创建 Integer 对象（过时）
+                public Integer(String s): 根据 String 值创建 Integer 对象（过时）
+
+            上面两种方法已经过时了，采用下面两种方法替代。
+
+            静态方法获取对象：
+                public static Integer valueOf (int i): 返回表示指定的 int 值的 Integer 实例
+                public static Integer valueOf (String s): 返回一个保存指定值的 Integer 对象 String
+         */
+        public class IntegerDemo {
+            public static void main(String[] args) {
+                /*
+                // 过时
+                // 因为给的是构造方法，所以使用 new 关键字，来构建对象
+                Integer i1 = new Integer(100);
+                System.out.println(i1);
+                Integer i2 = new Integer("100");
+                System.out.println(i2);
+                 */
+
+                // 未过时
+                // 因为给的是静态方法构造对象，所以不需要new，直接使用该方法就行
+                Integer i1 = Integer.valueOf(100);
+                System.out.println(i1);
+                Integer i2 = Integer.valueOf("100");
+                System.out.println(i2);
+            }
+        }
+        运行结果：
+        100
+        100
