@@ -1697,3 +1697,31 @@ IntegerDemo.java
 * 装箱：把基本数据类型转换为对应的包装类类型
 * 拆箱：把包装类类型转换为对应的基本数据类型
 
+注意：在使用包装类类型的时候，如果做操作，最好先判断是否为null
+
+&emsp;&emsp;&emsp;&emsp;我们推荐是，只要有对象，在使用前就必须进行不为null的判断
+
+Integer.java
+
+        package com.itheima_06;
+
+        public class IntegerDemo {
+            public static void main(String[] args) {
+                // 装箱：把基本数据类型转换为对应的包装类类型
+                Integer i = Integer.valueOf(100);
+                Integer ii = 100;  // 相当于Integer.valueOf(100);
+
+                // 拆箱：把包装类类型转换为对应的基本数据类型
+                ii += 200;   // 自动拆箱
+                ii = ii.intValue() + 200;   // 编译器会自动拆箱，不需要用intValue()进行手动拆箱
+                System.out.println(ii);
+
+                Integer iii = null;
+                if (iii != null) {
+                    iii += 300;  // 包装类在自动拆箱时不允许为空，所以开发时必须提前判断是否为空
+                }
+            }
+        }
+        
+        运行结果：
+        500
