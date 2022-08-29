@@ -1802,3 +1802,7 @@ ExceptionDemo02.java
         java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
                 at com.itheima_01.ExceptionDemo02.method(ExceptionDemo02.java:19)
                 at com.itheima_01.ExceptionDemo02.main(ExceptionDemo02.java:12)
+
+### Throwable的成员方法
+
+![4](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/4.png)
