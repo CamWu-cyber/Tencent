@@ -1806,3 +1806,59 @@ ExceptionDemo02.java
 ### Throwable的成员方法
 
 ![4](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/4.png)
+
+ExceptionDemo02.java
+
+        package com.itheima_01;
+        /*
+            public String getMessage(): 返回此 throwable 的详细消息字符串
+            public String toString(): 返回此可抛出的简短描述
+            public void printStackTrace(): 把异常的错误信息输出在控制台
+         */
+        public class ExceptionDemo02 {
+            public static void main(String[] args) {
+                System.out.println("开始");
+                method();
+                System.out.println("结束");
+            }
+
+            public static void method() {
+                try {
+                    int[] arr = {1,2,3};
+                    System.out.println(arr[3]);  //如果出现异常会产生一个异常对象 new ArrayIndexOutOfBoundsException();
+                } catch (ArrayIndexOutOfBoundsException e) {
+        //            e.printStackTrace();  //输出异常信息，程序不会中断
+
+        //            System.out.println(e.getMessage());
+                    //Index 3 out of bounds for length 3 异常的原因
+                    //选中方法 + ctrl b = 查看源码
+
+        //            System.out.println(e.toString());
+                    //java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+                    //异常的类名+异常的原因，也就是说包含了getMessage()的内容
+
+                    e.printStackTrace();  // 输出最全面的异常信息，所以一般都用此方法
+                }
+            }
+        }
+
+        /*
+            1.通过查看源码可知，getMessage方法返回的detailMessage是由Throwable构造方法传入的message得到的。
+            2.实现原理简化如下：
+            public class Throwable {
+                private String detailMessage;
+                public Throwable(String message) { // 构造方法
+                    detailMessage = message;
+                }
+                public String getMessage() {
+                    return detailMessage;
+                }
+            }
+         */
+         
+         运行结果：
+         开始
+        结束
+        java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+                at com.itheima_01.ExceptionDemo02.method(ExceptionDemo02.java:17)
+                at com.itheima_01.ExceptionDemo02.main(ExceptionDemo02.java:10)
