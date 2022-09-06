@@ -1879,3 +1879,22 @@ ExceptionDemo02.java
 
 * 编译时异常必须要进行处理，有两种处理方案：try...catch...或者 throws，如果采用 throws 这种方案，将来谁调用谁处理
 * 运行时异常可以不处理，出现问题后，需要我们回来修改代码
+
+### 自定义异常
+Java中异常的父类有 RuntimeException 和 Exception，所以自定义异常的实现需要继承Exception就行
+
+格式：
+
+        public class 异常类名 extends Exception {
+                无参构造
+                有参构造
+        }
+        
+范例：
+
+        public class ScoreException extends Exception {
+                public ScoreException() {}
+                public ScoreException(String message) {
+                        super(message);
+                }
+        }
