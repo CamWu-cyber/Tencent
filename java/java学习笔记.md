@@ -1864,5 +1864,15 @@ ExceptionDemo02.java
                 at com.itheima_01.ExceptionDemo02.main(ExceptionDemo02.java:10)
 
 
+### 异常处理之 throws
+虽然我们通过try...catch...可以对异常进行处理，但是并不是所有的情况我们都有权限进行异常的处理
 
-手动阀手动阀
+也就是说，有些时候可能出现的异常我们是处理不了的，这个时候怎么办呢？
+
+针对这种情况，Java提供了 throws 的处理方案
+
+格式：
+
+        throws 异常类名;
+        
+**注意：这个格式是跟在方法的括号后面的**
