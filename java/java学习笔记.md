@@ -1862,3 +1862,7 @@ ExceptionDemo02.java
         java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
                 at com.itheima_01.ExceptionDemo02.method(ExceptionDemo02.java:17)
                 at com.itheima_01.ExceptionDemo02.main(ExceptionDemo02.java:10)
+
+
+
+手动阀手动阀
