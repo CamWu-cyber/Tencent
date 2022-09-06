@@ -1898,3 +1898,57 @@ Java中异常的父类有 RuntimeException 和 Exception，所以自定义异常
                         super(message);
                 }
         }
+
+ScoreException.java
+
+        package com.itheima_02;
+
+        public class ScoreException extends Exception {
+            public ScoreException() {}
+            public ScoreException(String message) {
+                super(message);
+            }
+        }        
+        
+Teacher.java
+
+        package com.itheima_02;
+
+        public class Teacher {
+            public void checkScore(int score) throws ScoreException{
+                if(score<0 || score>100) {
+        //            throw new ScoreException();
+                    throw new ScoreException("你给的信息有误，应该在0-100之间");  // 使用 throw 手动抛出异常信息
+                } else {
+                    System.out.println("分数正常");
+                }
+            }
+        }
+        
+TeacherTest.java
+
+        package com.itheima_02;
+
+        import java.util.Scanner;
+
+        public class TeacherTest {
+            public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("请输入分数：");
+                int score = sc.nextInt();
+
+                Teacher t = new Teacher();
+                try {
+                    t.checkScore(score);
+                } catch (ScoreException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        运行结果：
+        请输入分数：
+        120
+        com.itheima_02.ScoreException: 你给的信息有误，应该在0-100之间
+                at com.itheima_02.Teacher.checkScore(Teacher.java:7)
+                at com.itheima_02.TeacherTest.main(TeacherTest.java:13)
