@@ -1995,7 +1995,11 @@ throw
 
 两个小问题：
 * 为什么要重写run()方法？
+
 &emsp;&emsp;&emsp;&emsp;因为run()是用来封装被线程执行的代码，每个程序的功能不同，run()方法的内容当然也不同，所以需要重写。
+
 * run()方法和start()方法的区别？
+
 &emsp;&emsp;&emsp;&emsp;run()：封装线程执行的代码，直接调用，相当于普通的方法的调用
+
 &emsp;&emsp;&emsp;&emsp;start()：启动线程；然后由JVM调用此线程的run()方法
