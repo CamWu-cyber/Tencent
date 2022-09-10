@@ -2001,4 +2001,5 @@ throw
 * run()方法和start()方法的区别？
 
 &emsp;&emsp;&emsp;&emsp;run()：封装线程执行的代码，直接调用，相当于普通的方法的调用
+
 &emsp;&emsp;&emsp;&emsp;start()：启动线程；然后由JVM调用此线程的run()方法
