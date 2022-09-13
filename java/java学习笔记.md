@@ -2119,3 +2119,102 @@ MyThreadDemo.java
         Thread-1:99
         Thread-0:98
         (Thread-0, Thread-1交替出现)
+
+part 2: setName()方法
+
+MyThread.java
+
+        package com.itheima_02;
+
+        public class MyThread extends Thread{
+            @Override
+            public void run() {
+                for(int i=0;i<100;i++){
+                    System.out.println(getName()+":"+i);
+                }
+            }
+        }
+
+        11. 再来看看setName()方法，如下：
+        public final synchronized void setName(String name) {
+            this.name = name;
+        }
+        更改了成员变量name的值，所以就更改了线程的名称。
+        
+MyThreadDemo.java
+
+package com.itheima_02;
+
+        public class MyThreadDemo {
+            public static void main(String[] args) {
+                MyThread my1 = new MyThread();
+                MyThread my2 = new MyThread();
+
+                my1.setName("高铁");
+                my2.setName("飞机");
+
+                my1.start();
+                my2.start();
+            }
+        }
+        运行结果：
+        高铁、飞机交替出现
+        
+part 3: 不使用setName()方法，使用带参构造方法来给线程赋值
+
+MyThread.java
+
+        package com.itheima_02;
+
+        public class MyThread extends Thread{
+            public MyThread() {}
+
+            //自己写一个带参的构造方法，才能访问父类的带参构造方法
+            public MyThread(String name) {
+                super(name);
+            }
+
+            @Override
+            public void run() {
+                for(int i=0;i<100;i++){
+                    System.out.println(getName()+":"+i);
+                }
+            }
+        }
+        
+        12. 父类的带参构造方法，如下：
+        public Thread(String name) {
+            this(null, null, name, 0);
+        }
+        这里的this指向的第三步的那个构造方法，后面的跳转步骤是一样的，就不复写了。
+
+MyThreadDemo.java
+
+        package com.itheima_02;
+
+        public class MyThreadDemo {
+            public static void main(String[] args) {
+                MyThread my1 = new MyThread();
+                MyThread my2 = new MyThread();
+
+        //        my1.setName("高铁");
+        //        my2.setName("飞机");
+
+                //Thread(String name)
+                MyThread my3 = new MyThread("高铁");
+                MyThread my4 = new MyThread("飞机");
+
+                my1.start();
+                my2.start();
+            }
+        }
+        运行结果：
+        高铁、飞机交替出现
+        
+**引申：已知父类有带参的构造方法，如何通过子类调用呢？**
+
+回答：
+
+        1. 定义子类时使用extends 父类名，来继承父类；
+
+        3. 在子类中写一个带参的构造方法，通过super(参数)访问父类的带参构造方法
