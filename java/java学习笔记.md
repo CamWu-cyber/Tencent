@@ -2049,6 +2049,9 @@ Thread类中设置和获取线程名称的方法
 * void setName(String name): 将此线程的名称更改为等于参数name
 * String getName(): 返回此线程的名称
 
+如何获取main()方法所在的线程名称？
+* public static Thread currentThread(): 返回对当前正在执行的线程对象的引用
+
 IDEA 弹出 Structure 用于查看代码结构：view(工具栏) -> Tool Windows -> Structure
 
 part 1: getName()方法（附上源码解析）
