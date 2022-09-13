@@ -2218,3 +2218,18 @@ MyThreadDemo.java
         1. 定义子类时使用 extends 父类名，来继承父类；
 
         2. 在子类中写一个带参的构造方法，通过super(参数)指向父类的带参构造方法
+
+part 4: currentThread()方法
+
+        MyThreadDemo.java
+
+        package com.itheima_02;
+
+        public class MyThreadDemo {
+            public static void main(String[] args) {        
+                //static Thread currentThread() 返回对当前正在执行的线程对象的引用
+                System.out.println(Thread.currentThread().getName());
+            }
+        }
+        运行结果：
+        main
