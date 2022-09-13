@@ -2051,4 +2051,71 @@ Thread类中设置和获取线程名称的方法
 
 IDEA 弹出 Structure 用于查看代码结构：view(工具栏) -> Tool Windows -> Structure
 
+part 1: getName()方法（附上源码解析）
 
+MyThread.java
+
+        package com.itheima_02;
+
+        public class MyThread extends Thread{
+            @Override
+            public void run() {
+                for(int i=0;i<100;i++){
+                    System.out.println(getName()+":"+i);
+                }
+            }
+        }
+
+        /*
+        1. 通过ctrl+d查看源码，找到Thread类的无参构造方法。发现调用了nextThreadNum()方法。ctrl + 点击该方法，即可跳转
+        public Thread() {
+            this(null, null, "Thread-" + nextThreadNum(), 0);
+        }
+
+        2. 跳转到nextThreadNum()方法后，发现return了threadInitNumber变量，双击thredInitNumber变量，发现它被定义为静态的整型变量，所以是从0开始计数的。又是后++，所以返回值也是从0开始的。
+        private static int threadInitNumber;//0，1，2
+        private static synchronized int nextThreadNum() {
+            return threadInitNumber++;//0，1，...
+        }
+
+        3. 查看第一步的this究竟是那种构造方法，给字符串赋值的，ctrl+点击this，跳转到了另一个构造方法，如下：
+        public Thread(ThreadGroup group, Runnable target, String name,
+                          long stackSize) {
+            this(group, target, name, stackSize, null, true);
+        }
+
+
+        4. 发现这个构造方法里面还有this，说明里面又套了另外一个构造方法，继续cttl+点击this，跳转下一个构造方法，如下：
+        private Thread(ThreadGroup g, Runnable target, String name,
+                           long stackSize, AccessControlContext acc,
+                           boolean inheritThreadLocals) {
+            this.name = name;
+        }
+        5. 此构造方法内容有点多，我们只关注想要的部分，所以从变量入手，在第一个this中发现传入的参数，只有第三个是有意义的，对应到目前的构造方法里面，就是name这个变量。
+        6. 找到跟name有关的语句，就是this.name = name; 说明从外面传入的字符串，最终通过name变量传递给了Thread类中的成员变量name，下一步我们去看看name是如何定义的。
+        7. ctrl+点击this.name，跳转到成员变量name,发现定义为：private volatile String name;
+        8. 自此成员变量name如何被赋值的路径就被我们找到了。现在返回去看getName()方法，究竟做了什么操作呢？
+        9. 点击getName()方法，ctrl+b，跳转到getName()方法的源码部分。如下：
+        public final String getName() {
+            return name;
+        }
+        10. 原来getName()方法返回了刚才赋值的成员变量name，这也说明了为什么getName()方法会有“Thread-0”这种默认输出了。
+         */
+         
+MyThreadDemo.java
+
+        package com.itheima_02;
+
+        public class MyThreadDemo {
+            public static void main(String[] args) {
+                MyThread my1 = new MyThread();
+                MyThread my2 = new MyThread();
+
+                my1.start();
+                my2.start();
+            }
+        }
+        运行结果：
+        Thread-1:99
+        Thread-0:98
+        (Thread-0, Thread-1交替出现)
