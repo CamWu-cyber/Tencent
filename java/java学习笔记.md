@@ -2043,3 +2043,9 @@ MyThreadDemo.java
         
         运行结果：
         交叉输出0-99的数字
+
+#### 设置和获取线程名称
+Thread类中设置和获取线程名称的方法
+* void setName(String name): 将此线程的名称更改为等于参数name
+* String getName(): 返回此线程的名称
+
