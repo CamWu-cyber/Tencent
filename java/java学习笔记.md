@@ -2249,3 +2249,57 @@ Java使用的是抢占式调度模型
 Thread类中设置和获取线程优先级的方法：
 * public final int getPriority(): 返回此线程的优先级
 * public final setPriority(int newPriority): 更改此线程的优先级
+
+ThreadPriority.java
+
+        package com.itheima_03;
+
+        public class ThreadPriority extends Thread{
+            @Override
+            public void run() {
+                for (int i=0; i<100;i++){
+                    System.out.println(getName() + ":" + i);
+                }
+            }
+        }
+
+ThreadPriorityDemo.java
+
+        package com.itheima_03;
+        /*
+            Thread类中设置和获取线程优先级的方法：
+                public final int getPriority(): 返回此线程的优先级
+                public final setPriority(int newPriority): 更改此线程的优先级
+         */
+        public class ThreadPriorityDemo {
+            public static void main(String[] args) {
+                ThreadPriority tp1 = new ThreadPriority();
+                ThreadPriority tp2 = new ThreadPriority();
+                ThreadPriority tp3 = new ThreadPriority();
+
+                tp1.setName("高铁");
+                tp2.setName("飞机");
+                tp3.setName("汽车");
+
+                //public final int getPriority(): 返回此线程的优先级
+                //默认优先级都为5
+        //        System.out.println(tp1.getPriority()); //5
+        //        System.out.println(tp2.getPriority()); //5
+        //        System.out.println(tp3.getPriority()); //5
+
+                //public final setPriority(int newPriority): 更改此线程的优先级
+                //newPriority的取值范围在[1,10]
+                tp1.setPriority(5);
+                tp2.setPriority(10);
+                tp3.setPriority(1);
+
+                tp1.start();
+                tp2.start();
+                tp3.start();
+            }
+        }
+        
+        运行结果：
+        高铁、飞机、汽车交替出现，飞机最先出现，其次是高铁，最后是汽车
+
+优先级越高表示该线程占用CPU的时间越久，所以优先输出它的结果，不代表一定只输出它的结果。
