@@ -2245,3 +2245,7 @@ part 4: currentThread()方法
 Java使用的是抢占式调度模型
 
 假如计算机只有一个CPU，那么CPU在某一个时刻只能执行一条命令，线程只有得到CPU时间片，也就是使用权，才可以执行命令。所以说多线程程序执行是有**随机性**的，因为谁抢到CPU的使用权是不一定的。
+
+Thread类中设置和获取线程优先级的方法：
+* public final int getPriority(): 返回此线程的优先级
+* public final setPriority(int newPriority): 更改此线程的优先级
