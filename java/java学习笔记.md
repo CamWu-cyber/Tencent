@@ -2307,3 +2307,141 @@ ThreadPriorityDemo.java
 #### 线程控制
 
 ![6](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/6.png)
+
+* Sleep
+
+ThreadSleep.java
+
+        package com.itheima_03;
+
+        public class ThreadSleep extends Thread {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println(getName() + ":" + i);
+                    // try catch 快捷键 ctrl+alt+t
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        
+ThreadSleepDemo.java
+
+        package com.itheima_03;
+        /*
+            static void sleep(long millis): 使当前正在执行的线程停留（暂停执行）指定的毫秒数
+         */
+        public class ThreadSleepDemo {
+            public static void main(String[] args) {
+                ThreadSleep ts1 = new ThreadSleep();
+                ThreadSleep ts2 = new ThreadSleep();
+                ThreadSleep ts3 = new ThreadSleep();
+
+                ts1.setName("曹操");
+                ts2.setName("刘备");
+                ts3.setName("孙权");
+
+                ts1.start();
+                ts2.start();
+                ts3.start();
+            }
+        }
+        运行结果：
+        原本三个线程时无序的，加了sleep后，三个线程出现的比较均衡了
+
+* Join
+
+ThreadJoin.java
+
+        package com.itheima_03;
+
+        public class ThreadJoin extends Thread {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println(getName() + ":" + i);
+                }
+            }
+        }
+        
+ThreadJoinDemo.java
+
+        package com.itheima_03;
+        /*
+            void join(): 让调用它的线程执行完毕之后，其他线程才开始执行
+         */
+        public class ThreadJoinDemo {
+            public static void main(String[] args) {
+                ThreadJoin tj1 = new ThreadJoin();
+                ThreadJoin tj2 = new ThreadJoin();
+                ThreadJoin tj3 = new ThreadJoin();
+
+                tj1.setName("康熙");
+                tj2.setName("四阿哥");
+                tj3.setName("八阿哥");
+
+                tj1.start();
+                try {
+                    tj1.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                tj2.start();
+                tj3.start();
+            }
+        }
+        运行结果：
+        等康熙执行完毕后，其他两个线程才开始执行
+        
+* Deamo
+
+ThreadDeamo.java
+
+        package com.itheima_03;
+
+        public class ThreadDeamon extends Thread {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println(getName() + ":" + i);
+                }
+            }
+        }
+
+ThreadDeamoDemo.java
+
+        package com.itheima_03;
+        /*
+            void setDaemon (boolean on)，将此线程标记为守护线程，当运行的线程都是守护线程时，Java虚拟机将退出
+         */
+        public class ThreadDeamonDemo {
+            public static void main(String[] args) {
+                ThreadDeamon td1 = new ThreadDeamon();
+                ThreadDeamon td2 = new ThreadDeamon();
+
+                td1.setName("关羽");
+                td2.setName("张飞");
+
+                //设置主线程为刘备
+                Thread.currentThread().setName("刘备");
+
+                //设置守护线程
+                //主线程执行完毕后，守护线程也会很快结束
+                td1.setDaemon(true);
+                td2.setDaemon(true);
+
+                td1.start();
+                td2.start();
+
+                for (int i = 0; i < 10; i++) {
+                    System.out.println(Thread.currentThread().getName()+":"+i);
+                }
+            }
+        }
+        
+        运行结果：
+        刘备执行完毕后，关羽和张飞也很快结束了
