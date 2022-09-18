@@ -2303,3 +2303,7 @@ ThreadPriorityDemo.java
         高铁、飞机、汽车交替出现，飞机最先出现，其次是高铁，最后是汽车
 
 优先级越高表示该线程占用CPU的时间越久，所以优先输出它的结果，不代表一定只输出它的结果。
+
+#### 线程控制
+
+![6](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/6.png)
