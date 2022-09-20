@@ -2445,3 +2445,8 @@ ThreadDeamoDemo.java
         
         运行结果：
         刘备执行完毕后，关羽和张飞也很快结束了
+
+#### 线程生命周期
+
+![7](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/7.png)
+)
