@@ -2450,3 +2450,12 @@ ThreadDeamoDemo.java
 
 ![7](https://github.com/CamWu-cyber/Tencent/blob/main/java/%E5%9B%BE%E7%89%87/7.png)
 )
+
+#### 多线程的实现方式
+方式2：实现Runnable接口
+* 定义一个类MyRunnable实现Runnable接口
+* 在MyRunnable类中重写run()方法
+* 创建MyRunnable类的对象
+* 创建Thread类的对象，把MyRunnable对象作为构造方法的参数
+* 启动线程
+
