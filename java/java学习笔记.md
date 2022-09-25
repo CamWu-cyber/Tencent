@@ -2524,3 +2524,50 @@ MyRunnableDemo.java
         }
         
 * synchronized(任意对象)：就相当于给代码加锁了，任意对象就可以看成是一把锁。
+
+SellTicket.java
+
+        package com.ithema_05;
+
+        public class SellTicket implements Runnable{
+            private int ticket = 100;
+            private Object obj = new Object();
+
+            @Override
+            public void run() {
+                while(true) {
+                    synchronized (obj) {
+                        if (ticket > 0) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println(Thread.currentThread().getName() + "正在出售第" + ticket + "张票");
+                            ticket--;
+                        }
+                    }
+                }
+            }
+        }
+        
+SellTicketDemo.java
+
+        package com.ithema_05;
+
+        public class SellTicketDemo {
+            public static void main(String[] args) {
+                SellTicket st = new SellTicket();
+
+                Thread t1 = new Thread(st, "窗口1");
+                Thread t2 = new Thread(st, "窗口2");
+                Thread t3 = new Thread(st, "窗口3");
+
+                t1.start();
+                t2.start();
+                t3.start();
+            }
+        }
+        运行结果：
+        窗口1，2，3交替出现，且票数正常递减，没有数据安全问题了
+
