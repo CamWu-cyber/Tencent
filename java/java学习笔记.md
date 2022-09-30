@@ -2586,3 +2586,69 @@ SellTicketDemo.java
 
 同步静态方法的锁对象是什么呢？
 * 类名.class
+
+SellTicket.java
+
+        package com.itheima_04;
+
+        public class SellTicket implements Runnable{
+            private static int tickets = 100;
+            private Object obj = new Object();
+            private int x = 0;
+
+            @Override
+            public void run() {
+                while(true) {
+                    if (x%2 == 0) {
+        //                synchronized (this) {
+                        synchronized (SellTicket.class) {
+                            if (tickets > 0) {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                System.out.println(Thread.currentThread().getName() + "正在出售" + tickets + "张票");
+                                tickets--;
+                            }
+                        }
+                    } else {
+                        sellTicket();
+                    }
+                    x++;
+                }
+            }
+
+            private static synchronized void sellTicket() {
+                if (tickets > 0) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() + "正在出售" + tickets + "张票");
+                    tickets--;
+                }
+            }
+        }
+
+SellTicketsDemo.java
+
+        package com.itheima_04;
+
+        public class SellTicketsDemo {
+            public static void main(String[] args) {
+                SellTicket st = new SellTicket();
+
+                Thread t1 = new Thread(st, "窗口1");
+                Thread t2 = new Thread(st, "窗口2");
+                Thread t3 = new Thread(st, "窗口3");
+
+                t1.start();
+                t2.start();
+                t3.start();
+            }
+        }
+        
+        运行结果：
+        窗口1 2 3 交替出现，并且没有数据安全问题
