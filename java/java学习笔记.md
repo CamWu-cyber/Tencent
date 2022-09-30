@@ -2571,3 +2571,18 @@ SellTicketDemo.java
         运行结果：
         窗口1，2，3交替出现，且票数正常递减，没有数据安全问题了
 
+#### 同步方法
+同步方法：就是把synchronized关键字加到方法上
+
+* 格式：
+&emsp;&emsp;&emsp;&emsp;修饰符 synchronized 返回值类型 方法名（方法参数）{ }
+
+同步方法的锁对象是什么呢？
+* this
+
+同步静态方法：就是把synchronized关键字加到静态方法上
+* 格式：
+&emsp;&emsp;&emsp;&emsp;修饰符 static synchronized 返回值类型 方法名（方法参数）{ }
+
+同步静态方法的锁对象是什么呢？
+* 类名.class
