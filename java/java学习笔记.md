@@ -2685,3 +2685,55 @@ Lock是接口不能直接实例化，这里采用它的实现类ReentrantLock来
 
 ReentrantLock的构造方法
 * ReentrantLock(): 创建一个ReentrantLock的实例
+
+SellTicket.java
+
+        package com.ithema_05;
+
+        import java.util.concurrent.locks.Lock;
+        import java.util.concurrent.locks.ReentrantLock;
+
+        public class SellTicket implements Runnable{
+            private int ticket = 100;
+            private Lock lock = new ReentrantLock();
+
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        lock.lock();  # 加锁
+                        if (ticket > 0) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println(Thread.currentThread().getName() + "正在出售第" + ticket + "张票");
+                            ticket--;
+                        }
+                    } finally {
+                        lock.unlock();  # 解锁
+                    }
+                }
+            }
+        }
+
+SellTicketDemo.java
+
+        package com.ithema_05;
+
+        public class SellTicketDemo {
+            public static void main(String[] args) {
+                SellTicket st = new SellTicket();
+
+                Thread t1 = new Thread(st, "窗口1");
+                Thread t2 = new Thread(st, "窗口2");
+                Thread t3 = new Thread(st, "窗口3");
+
+                t1.start();
+                t2.start();
+                t3.start();
+            }
+        }
+        运行结果：
+        窗口1、2、3交替出现，且没有数据安全问题
