@@ -2668,6 +2668,7 @@ SellTicketsDemo.java
 
 在实际应用中，StringBuffer会使用，Vector和Hashtable一般不会使用，它们被Collections.synchronicedList()替代了.
         
+        
         # 创建一个线程安全的List
         List<String> list = Collections.synchronizedList(new ArrayList<String>());
         
