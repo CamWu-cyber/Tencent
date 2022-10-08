@@ -2652,3 +2652,16 @@ SellTicketsDemo.java
         
         运行结果：
         窗口1 2 3 交替出现，并且没有数据安全问题
+
+#### 线程安全的类
+
+下面三个类不存在线程安全的问题，因为它们内部的方法或者方法体均采用了synchronized关键字修饰。在多线程环境下可以直接使用的
+
+* StringBuffer
+* Vector
+* Hashtable
+
+与上面对应的三个线程不安全的类：
+* StringBuilder
+* ArrayList
+* HashMap
