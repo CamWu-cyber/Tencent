@@ -2755,3 +2755,127 @@ SellTicketDemo.java
 * void notify(): 唤醒正在等待对象监视器的单个线程
 * void notifyAll(): 唤醒正在等待对象监视器的所有线程
 
+Box.java
+
+        package com.ithema_06;
+
+        public class Box {
+            // 定义一个成员变量，表示第x瓶牛奶
+            private int milk;
+            // 定义一个成员变量，表示奶箱的状态
+            private boolean state = false;
+
+            //提供存储牛奶和获取牛奶的操作
+            public synchronized void put (int milk) {
+                // 如果有牛奶，等待消费
+                if(state) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                //如果没有牛奶，就生产牛奶
+                this.milk = milk;
+                System.out.println("送奶工将第"+this.milk+"瓶奶放入奶箱");
+
+                //生产完毕之后，修改奶箱状态
+                state = true;
+
+                //唤醒其他等待的线程
+                notifyAll();
+            }
+            public synchronized void get() {
+                // 如果没有牛奶，等待生产
+                if(!state) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                //如果有牛奶，就消费牛奶
+                System.out.println("用户拿到第"+this.milk+"瓶奶");
+
+                //消费完毕后，修改奶箱状态
+                state = false;
+
+                //唤醒其他等待的线程
+                notifyAll();
+            }
+        }
+
+Producer.java
+        
+        package com.ithema_06;
+
+        public class Producer implements Runnable{
+            private Box b;
+
+            public Producer(Box b) {
+                this.b = b;
+            }
+
+            @Override
+            public void run() {
+                for (int i=1; i<=5; i++) {
+                    b.put(i);
+                }
+            }
+        }
+
+Customer.java
+
+        package com.ithema_06;
+
+        public class Customer implements Runnable{
+            private Box b;
+            public Customer (Box b) {
+                this.b = b;
+            }
+
+            @Override
+            public void run() {
+                while (true) {
+                    b.get();
+                }
+            }
+        }
+
+BoxDemo.java
+
+        package com.ithema_06;
+
+        public class BoxDemo {
+            public static void main(String[] args) {
+                //创建奶箱对象，这是共享数据区域
+                Box b = new Box();
+
+                //创建生产者对象，把奶箱对象作为构造方法参数传递，因为在这个类中要调用存储牛奶的操作
+                Producer p = new Producer(b);
+                //创建消费者对象，把奶箱对象作为构造方法参数传递，因为在这个类中要调用获取牛奶的操作
+                Customer c = new Customer(b);
+
+                //创建2个线程对象，分别把生产者对象和消费者对象作为构造方法参数传递
+                Thread t1 = new Thread(p);
+                Thread t2 = new Thread(c);
+
+                //启动线程
+                t1.start();
+                t2.start();
+            }
+        }
+        
+        运行结果：
+        送奶工将第1瓶奶放入奶箱
+        用户拿到第1瓶奶
+        送奶工将第2瓶奶放入奶箱
+        用户拿到第2瓶奶
+        送奶工将第3瓶奶放入奶箱
+        用户拿到第3瓶奶
+        送奶工将第4瓶奶放入奶箱
+        用户拿到第4瓶奶
+        送奶工将第5瓶奶放入奶箱
+        用户拿到第5瓶奶
