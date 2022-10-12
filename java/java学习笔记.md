@@ -2893,3 +2893,15 @@ BoxDemo.java
 * 协议
 
 &emsp;&emsp;通过计算机网络可以使多台计算机实现链接，位于同一网络中的计算机在进行连接和通信时需要遵循一定的规则。在计算机网络中，这些连接和通信规则被称为网络通信协议，它对数据的传输格式、传输速率、传输步骤等做了统一规定，通信双方必须同时遵守才能完成数据交换。常见的协议有UDP协议和TCP协议。
+
+### InetAddress 的使用
+为了方便我们对IP地址的获取和操作，Java提供了一个类InetAddress供我们使用
+
+InetAddress: 此类表示Internet协议（IP）地址
+
+1. static InetAddress getByName(String host): 确定主机名称的IP地址。主机名称可以是机器名称，也可以是IP地址
+2. String getHostName(): 获取此IP地址的主机名
+3. String getHostAddress(): 返回文本显示的IP地址字符串
+
+
+
