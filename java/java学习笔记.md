@@ -2903,5 +2903,24 @@ InetAddress: 此类表示Internet协议（IP）地址
 2. String getHostName(): 获取此IP地址的主机名
 3. String getHostAddress(): 返回文本显示的IP地址字符串
 
+InetAddress.java
+
+        package com.ithema_07;
+        import java.net.InetAddress;
+        import java.net.UnknownHostException;
+
+        public class InetAddressDemo {
+            public static void main(String[] args) throws UnknownHostException {
+                InetAddress address = InetAddress.getByName("192.168.0.108"); // 创建ip地址对象
+                String name = address.getHostName();
+                String ip = address.getHostAddress();
+                System.out.println("主机名："+name);
+                System.out.println("IP地址："+ip);
+            }
+        }
+        
+        运行结果：
+        主机名：CAMWU-NB3
+        IP地址：192.168.0.108
 
 
