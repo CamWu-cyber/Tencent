@@ -2955,3 +2955,10 @@ UDP协议是一种不可靠的网络协议，它在通信的两端各建立一�
 因此对于UDP协议的通信双方而言，没有所谓的客户端和服务器的概念。
 
 Java提供了DatagramSocket类作为基于UDP协议的Socket.
+
+#### UDP发送数据
+发送数据的步骤：
+* 创建发送端的Socket对象（DatagramSocket）
+* 创建数据，并把数据打包
+* 调用DatagramSocket对象的方法发送数据
+* 关闭发送端
