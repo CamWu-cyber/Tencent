@@ -2959,12 +2959,19 @@ Java提供了DatagramSocket类作为基于UDP协议的Socket.
 #### UDP发送数据
 发送数据的步骤：
 * 创建发送端的Socket对象（DatagramSocket）
+
 &emsp;&emsp;DatagramSocket()
+
 * 创建数据，并把数据打包
+
 &emsp;&emsp;DatagramPacket(byte[] bys, int length, InetAddress address, int port)
+
 * 调用DatagramSocket对象的方法发送数据
+
 &emsp;&emsp;void send(DatagramPacket p)
+
 * 关闭发送端
+
 &emsp;&emsp;void close()
 
 SendDemo.java
