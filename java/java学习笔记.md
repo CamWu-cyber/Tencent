@@ -2959,6 +2959,43 @@ Java提供了DatagramSocket类作为基于UDP协议的Socket.
 #### UDP发送数据
 发送数据的步骤：
 * 创建发送端的Socket对象（DatagramSocket）
+&emsp;&emsp;DatagramSocket()
 * 创建数据，并把数据打包
+&emsp;&emsp;DatagramPacket(byte[] bys, int length, InetAddress address, int port)
 * 调用DatagramSocket对象的方法发送数据
+&emsp;&emsp;void send(DatagramPacket p)
 * 关闭发送端
+&emsp;&emsp;void close()
+
+SendDemo.java
+
+        package com.itheima_05;
+
+        import java.io.IOException;
+        import java.net.*;
+
+        public class SendDemo {
+            public static void main(String[] args) throws IOException {
+                //创建发送端的Socket对象（DatagramSocket）
+                //技巧：创建一个对象需要使用对应类的构造方法，在API手册里面查询此类的构造方法，选择一个使用就好
+                DatagramSocket ds = new DatagramSocket();
+
+                //创建数据，并把数据打包
+                //使用DatagramPacket构造方法来创建数据包对象
+                //DatagramPacket (byte[] buf, int length, InetAddress address, int port)
+                //构造一个数据包，发送长度为length的数据包到指定主机上的指定端口号。
+                byte[] bys = "hello,udp".getBytes();
+                int length = bys.length;
+                InetAddress address = InetAddress.getByName("10.19.140.42");
+                int port = 10086;
+                DatagramPacket dp = new DatagramPacket(bys,length,address,port);
+
+                //调用DatagramSocket对象的方法发送数据
+                ds.send(dp);
+
+                //关闭发送端
+                ds.close();
+            }
+        }
+        运行结果：
+        啥都没有，因为此时接收端还未构造出来
