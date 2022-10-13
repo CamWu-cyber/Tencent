@@ -3010,7 +3010,24 @@ SendDemo.java
 ### UDP接收数据
 接受数据的步骤
 * 创建接收数据的Socket对象（DatagramSocket）
+
+&emsp;&emsp;DatagramSocket(int port)
+
 * 创建一个数据包，用于接收数据
+
+&emsp;&emsp;DatagramPacket(byte[] buf, int length)
+
 * 调用DatagramSocket对象的方法接收数据
+
+&emsp;&emsp;void receive(DatagramPacket p)
+
 * 解析数据包，并把数据在控制台显示
+
+&emsp;&emsp;byte[] getData()
+&emsp;&emsp;int getLength()
+
 * 关闭接收端
+
+&emsp;&emsp;void close()
+
+
