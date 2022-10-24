@@ -3160,3 +3160,9 @@ Java对基于TCP协议的网络提供了良好的封装，使用Socekt对象来�
 
 Java为客户端提供了Socket类，为服务端提供了ServiceSocket类
 
+### TCP发送数据
+发送数据步骤：
+1. 创建客户端的Socket对象（Socket）
+2. 获取输出流，写数据
+3. 释放资源
+
