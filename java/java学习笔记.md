@@ -3163,6 +3163,9 @@ Java为客户端提供了Socket类，为服务端提供了ServiceSocket类
 ### TCP发送数据
 发送数据步骤：
 1. 创建客户端的Socket对象（Socket）
-2. 获取输出流，写数据
-3. 释放资源
+&emsp;&emsp;&emsp;&emsp;Socket(String host, int port)
+3. 获取输出流，写数据
+&emsp;&emsp;&emsp;&emsp;OutputStream getOutputStream()
+5. 释放资源
+&emsp;&emsp;&emsp;&emsp;void close()
 
