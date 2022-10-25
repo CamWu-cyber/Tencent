@@ -3199,3 +3199,20 @@ ClientDemo.java
         }
         运行结果：
         报错，因为目前还没有创建服务端
+
+### TCP接收数据
+1. 创建服务器的Socket对象（SeverSocket）
+
+&emsp;&emsp;&emsp;&emsp;ServerSocket(int port)
+
+2. 监听客户端连接，返回一个Socket对象
+
+&emsp;&emsp;&emsp;&emsp;Socket accept()
+
+3. 获取输入流，读数据，并把数据显示在控制台
+
+&emsp;&emsp;&emsp;&emsp;InputStream getInputStream()
+
+4. 释放资源
+
+&emsp;&emsp;&emsp;&emsp;void close()
