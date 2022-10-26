@@ -3250,3 +3250,72 @@ ServerDemo.java
 
         运行结果：
         数据是：hello,tcp,我来了
+
+### TCP通信程序练习1（服务器给出反馈）
+Client.java
+
+        package com.ithema_09;
+
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.io.OutputStream;
+        import java.net.Socket;
+
+        public class ClientDemo {
+            public static void main(String[] args) throws IOException {
+                //创建客户端的Socket对象（Socket）
+                Socket s = new Socket("192.168.0.109", 50000);
+
+                //获取输出流，写数据
+                OutputStream os = s.getOutputStream();
+                os.write("hello,tcp,我来了".getBytes());
+
+                //接收服务器反馈
+                InputStream is = s.getInputStream();
+                byte[] bys = new byte[1024];
+                int len = is.read(bys);
+                String data = new String(bys,0,len);
+                System.out.println("客户端："+data);
+
+                //释放资源
+                s.close();
+            }
+        }
+        运行结果：
+        客户端：数据已经收到
+
+ServerDemo.java
+
+        package com.ithema_09;
+
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.io.OutputStream;
+        import java.net.ServerSocket;
+        import java.net.Socket;
+
+        public class ServerDemo {
+            public static void main(String[] args) throws IOException {
+                //创建服务器的Socket对象（ServerSocket）
+                ServerSocket ss = new ServerSocket(50000);
+
+                //监听客户端连接，返回一个Socket对象
+                Socket s = ss.accept();
+
+                //获取输入流，读数据，并把数据显示在控制台
+                InputStream is = s.getInputStream();
+                byte[] bys = new byte[1024];
+                int len = is.read(bys);
+                String data = new String(bys,0,len);
+                System.out.println("服务器："+data);
+
+                //给出反馈
+                OutputStream os = s.getOutputStream();
+                os.write("数据已经收到".getBytes());
+
+                //释放资源
+                ss.close();
+            }
+        }
+        运行结果：
+        服务器：hello,tcp,我来了
