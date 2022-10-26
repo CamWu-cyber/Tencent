@@ -3328,3 +3328,77 @@ ServerDemo.java
 * 客户端：数据来自于键盘录入，直到输入的数据是886，发送数据结束
 * 服务器：接收到的数据在控制台输出
 
+Client.java
+
+        package com.ithema_10;
+
+        import java.io.*;
+        import java.net.Socket;
+
+        public class ClientDemo {
+            public static void main(String[] args) throws IOException {
+                //创建客户端Socket对象
+                Socket s = new Socket("192.168.0.109", 50000);
+
+                //数据来自于键盘录入，直到输入的数据是886，发送数据结束
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                //用BufferWriter封装输出流对象s.getOutputStream()
+                //s.getOutputStream读取的是字符流，这句话本质上是把“字节流” 转成了 “字符流”
+                //同时采用BufferedWriter和BufferedReader对应起来，这样读写都是“字符流”
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+                String line;
+                while((line=br.readLine())!=null) {
+                    if("886".equals(line)) {
+                        break;
+                    }
+                    //获取输出流对象
+                    bw.write(line);
+                    bw.newLine();  //换一行
+                    bw.flush();   //再刷新一下
+                }
+
+                //释放资源
+                s.close();
+
+            }
+        }
+        运行结果：
+        tcp
+        java
+        886
+        
+ServerDemo.java
+
+        package com.ithema_10;
+
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.net.ServerSocket;
+        import java.net.Socket;
+
+        public class ServerDemo {
+            public static void main(String[] args) throws IOException {
+                //创建服务器Socket对象
+                ServerSocket ss = new ServerSocket(50000);
+
+                //监听客户端的连接，返回一个对应的Socket对象
+                Socket s = ss.accept();
+
+                //获取输入流
+                //同样采用BufferedReader，把“字符流”转成“字节流”
+                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+
+                //释放资源
+                ss.close();
+            }
+        }
+        运行结果：
+        tcp
+        java
+        
+
