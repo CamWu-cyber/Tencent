@@ -3401,4 +3401,82 @@ ServerDemo.java
         tcp
         java
         
+练习3
+* 客户端：数据来自于键盘录入，直到输入的数据是886，发送数据结束
+* 服务端：接收到的数据写入文本文件
+
+ClientDemo.java
+
+        package com.ithema_11;
+
+        import java.io.*;
+        import java.net.Socket;
+
+        public class ClientDemo {
+            public static void main(String[] args) throws IOException {
+                //创建客户端Socket对象
+                Socket s = new Socket("192.168.0.109", 50000);
+
+                //数据来自于键盘录入，直到输入的数据是886，发送数据结束
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                //用BufferWriter封装输出流对象s.getOutputStream()
+                //s.getOutputStream读取的是字符流，这句话本质上是把“字节流” 转成了 “字符流”
+                //同时采用BufferedWriter和BufferedReader对应起来，这样读写都是“字符流”
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+                String line;
+                while((line=br.readLine())!=null) {
+                    if("886".equals(line)) {
+                        break;
+                    }
+                    //获取输出流对象
+                    bw.write(line);
+                    bw.newLine();  //换一行
+                    bw.flush();   //再刷新一下
+                }
+
+                //释放资源
+                s.close();
+
+            }
+        }
+        运行结果：
+        tcp
+        java
+        886
+        
+ServerDemo.java
+
+        package com.ithema_11;
+
+        import java.io.*;
+        import java.net.ServerSocket;
+        import java.net.Socket;
+
+        public class ServerDemo {
+            public static void main(String[] args) throws IOException {
+                //创建服务器Socket对象
+                ServerSocket ss = new ServerSocket(50000);
+
+                //监听客户端连接，返回一个对应的Socket对象
+                Socket s = ss.accept();
+
+                //接收数据
+                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                //把数据写入文本文件
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./s.txt"));
+
+                String line;
+                while((line = br.readLine()) != null) {
+                    bw.write(line);
+                    bw.newLine();
+                    bw.flush();
+                }
+
+                //释放资源
+                bw.close();
+                ss.close();
+            }
+        }
+        运行结果：
+        本目录下出现了s.txt, 里面的内容就是tcp java
 
