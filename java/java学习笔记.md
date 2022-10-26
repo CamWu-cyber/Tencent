@@ -3251,7 +3251,11 @@ ServerDemo.java
         运行结果：
         数据是：hello,tcp,我来了
 
-### TCP通信程序练习1（服务器给出反馈）
+### TCP通信程序练习
+练习1
+* 客户端：发送数据，接收服务器反馈
+* 服务器：接收数据，给出反馈
+
 Client.java
 
         package com.ithema_09;
