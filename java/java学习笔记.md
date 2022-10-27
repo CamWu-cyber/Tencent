@@ -3638,3 +3638,115 @@ ServerDemo.java
 练习6：
 * 客户端：数据来自于文本文件，接收服务器反馈
 * 服务端：接收到的数据写入文本文件，给出反馈，代码用线程进行封装，为每一个客户端开启一个线程
+
+ClientDemo.java
+
+        package com.ithema_14;
+
+        import java.io.*;
+        import java.net.Socket;
+
+        public class ClientDemo {
+            public static void main(String[] args) throws IOException {
+                //创建客户端Socket对象
+                Socket s = new Socket("192.168.0.109", 40056);
+
+                //封装文本文件的数据
+                BufferedReader br = new BufferedReader(new FileReader("./s.txt"));
+                //封装输出流写数据
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+
+                String line;
+                while ((line=br.readLine()) != null) {
+                    bw.write(line);
+                    bw.newLine();
+                    bw.flush();
+                }
+
+
+                //采用Socket固有方法(表示输出结束)，告诉服务器文件已经读取完毕
+                s.shutdownOutput();
+                //接收反馈
+                BufferedReader brClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                String data = brClient.readLine();  //等待读取服务器的数据
+                System.out.println("服务器反馈："+data);
+
+                //释放资源
+                br.close();
+                s.close();
+            }
+        }
+        运行结果：
+        运行一次客户端，就多一个s_copy[count].txt文件
+        
+ServerDemo.java
+
+        package com.ithema_14;
+
+        import java.io.IOException;
+        import java.net.ServerSocket;
+        import java.net.Socket;
+
+        public class ServerDemo {
+            public static void main(String[] args) throws IOException {
+                //创建服务器Socket对象
+                ServerSocket ss = new ServerSocket(40056);
+
+                while(true) {
+                    //监听客户端连接，返回一个对应的Socket对象
+                    Socket s = ss.accept();
+                    //为每一个客户端开启一个线程
+                    new Thread(new ServerThread(s)).start();
+                }
+
+                //服务器是不关闭的，所以没有close的操作
+        //        ss.close();
+            }
+        }
+
+ServerThread.java
+
+        package com.ithema_14;
+
+        import java.io.*;
+        import java.net.Socket;
+
+        public class ServerThread implements Runnable {
+            private Socket s;
+            public ServerThread(Socket s) {
+                this.s = s;
+            }
+
+            @Override
+            public void run() {
+                try {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                    //BufferedWriter bw = new BufferedWriter(new FileWriter("./s_copy.txt"));
+                    //解决命名冲突
+                    int count = 0;
+                    File file = new File("s_copy[" + count + "].txt");
+                    while (file.exists()) {
+                        count++;
+                        file = new File("s_copy[" + count + "].txt");
+                    }
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+
+                    String line;
+                    while ((line=br.readLine())!=null) {
+                        bw.write(line);
+                        bw.newLine();
+                        bw.flush();
+                    }
+
+                    //给出反馈
+                    BufferedWriter bwServer = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+                    bwServer.write("文件上传成功");
+                    bwServer.newLine();
+                    bwServer.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
