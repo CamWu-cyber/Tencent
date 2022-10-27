@@ -3557,4 +3557,80 @@ ServerDemo.java
 * 原因：读取数据的方法是阻塞式的，所以服务器不知道客户端什么时候读完了文件
 * 解决办法：使用shutdownOutput()方法
 
+ClientDemo.java
 
+        package com.ithema_13;
+
+        import java.io.*;
+        import java.net.Socket;
+
+        public class ClientDemo {
+            public static void main(String[] args) throws IOException {
+                //创建客户端Socket对象
+                Socket s = new Socket("192.168.0.109", 50056);
+
+                //封装文本文件的数据
+                BufferedReader br = new BufferedReader(new FileReader("./s.txt"));
+                //封装输出流写数据
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+
+                String line;
+                while ((line=br.readLine()) != null) {
+                    bw.write(line);
+                    bw.newLine();
+                    bw.flush();
+                }
+
+
+                //采用Socket固有方法(表示输出结束)，告诉服务器文件已经读取完毕
+                s.shutdownOutput();
+                //接收反馈
+                BufferedReader brClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                String data = brClient.readLine();  //等待读取服务器的数据
+                System.out.println("服务器反馈："+data);
+
+                //释放资源
+                br.close();
+                s.close();
+            }
+        }
+        运行结果：
+        服务器反馈：文件上传成功
+
+ServerDemo.java
+
+        package com.ithema_13;
+
+        import java.io.*;
+        import java.net.ServerSocket;
+        import java.net.Socket;
+
+        public class ServerDemo {
+            public static void main(String[] args) throws IOException {
+                //创建服务器Socket对象
+                ServerSocket ss = new ServerSocket(50056);
+
+                //监听客户端连接，返回一个对应的Socket对象
+                Socket s = ss.accept();
+
+                //接收数据
+                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                //把数据写入文本文件
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./s_copy.txt"));
+
+                String line;
+                while((line=br.readLine()) != null) {
+                    bw.write(line);
+                    bw.newLine();
+                    bw.flush();
+                }
+
+                //给出反馈
+                BufferedWriter bwServer = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+                bwServer.write("文件上传成功");
+                bwServer.newLine();
+                bwServer.flush();
+            }
+        }
+        运行结果：
+        本地目录下出现了s_copy.txt文件，内容跟客户端s.txt一样的
