@@ -3935,3 +3935,29 @@ FlyableDemo.java
 
 &esmp;&esmp;一个方法是main方法，在main方法中调用useAddable方法
 
+Addable.java
+
+        package com.ithema_18;
+
+        public interface Addable {
+            int add(int x, int y);
+        }
+        
+AddableDemo.java
+
+        package com.ithema_18;
+
+        public class AddableDemo {
+            public static void main(String[] args) {
+                useAddable((int x, int y) -> {
+                    return x + y;
+                });
+            }
+
+            public static void useAddable(Addable a) {
+                int sum = a.add(10, 20);
+                System.out.println(sum);
+            }
+        }
+        运行结果：
+        30
