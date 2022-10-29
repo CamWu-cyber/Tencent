@@ -3804,3 +3804,6 @@ MyRunnable.java
                 System.out.println("多线程程序启动了");
             }
         }
+
+### Lambda表达式的标准格式
+组成Lambda表达式的三要素：形式参数，箭头，代码块
