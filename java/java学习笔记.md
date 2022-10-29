@@ -3772,26 +3772,28 @@ LambdaDemo.java
 
         public class LambdaDemo {
             public static void main(String[] args) {
-        //        //实现类的方式实现需求
-        //        MyRunnable my = new MyRunnable();
-        //        Thread t = new Thread(my);
-        //        t.start();
-        //
-        //        //匿名内部类的方式改进
-        //        new Thread(new Runnable() {
-        //            @Override
-        //            public void run() {
-        //                System.out.println("多线程程序启动了");
-        //            }
-        //        }).start();
+                //方法1：实现类的方式实现需求
+                MyRunnable my = new MyRunnable();
+                Thread t = new Thread(my);
+                t.start();
+        
+                //方法2：匿名内部类的方式改进
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("多线程程序启动了");
+                    }
+                }).start();
 
-                //Lambda 表达式的方式改进
+                //方法3：Lambda 表达式的方式改进
                 new Thread( () -> {
                     System.out.println("多线程程序启动了");
                 }).start();
             }
         }
         运行结果：
+        多线程程序启动了
+        多线程程序启动了
         多线程程序启动了
 
 MyRunnable.java
@@ -3826,3 +3828,55 @@ Lambda表达式的使用前提
 &emsp;&emsp;&emsp;&emsp;一个方法是useEatable(Eatable e)
 
 &emsp;&emsp;&emsp;&emsp;一个方法是main方法，在main方法中调用useEatable方法
+
+Eatable.java
+
+        package com.ithema_16;
+
+        public interface Eatable {
+            void eat();
+        }
+        
+EatableImpl.java
+
+        package com.ithema_16;
+
+        public class EatableImpl implements Eatable{
+            @Override
+            public void eat() {
+                System.out.println("一天一苹果，医生远离我");
+            }
+        }
+        
+EatableDemo.java
+
+        package com.ithema_16;
+
+        public class EatableDemo {
+            public static void main(String[] args) {
+                //方法1：在主方法中调用useEatable方法
+                Eatable e = new EatableImpl();
+                useEatable(e);
+
+                //方法2：匿名内部类
+                useEatable(new Eatable() {
+                    @Override
+                    public void eat() {
+                        System.out.println("一天一苹果，医生远离我");
+                    }
+                });
+
+                //方法3：Lambda表达式
+                useEatable(() -> {
+                    System.out.println("一天一苹果，医生远离我");
+                });
+            }
+
+            public static void useEatable(Eatable e) {
+                e.eat();
+            }
+        }
+        运行结果：
+        一天一苹果，医生远离我
+        一天一苹果，医生远离我
+        一天一苹果，医生远离我
