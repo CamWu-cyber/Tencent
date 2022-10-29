@@ -3765,3 +3765,42 @@ ServerThread.java
 
 方式3
 * Lambda表达式的方式改进
+
+LambdaDemo.java
+
+        package com.ithema_15;
+
+        public class LambdaDemo {
+            public static void main(String[] args) {
+        //        //实现类的方式实现需求
+        //        MyRunnable my = new MyRunnable();
+        //        Thread t = new Thread(my);
+        //        t.start();
+        //
+        //        //匿名内部类的方式改进
+        //        new Thread(new Runnable() {
+        //            @Override
+        //            public void run() {
+        //                System.out.println("多线程程序启动了");
+        //            }
+        //        }).start();
+
+                //Lambda 表达式的方式改进
+                new Thread( () -> {
+                    System.out.println("多线程程序启动了");
+                }).start();
+            }
+        }
+        运行结果：
+        多线程程序启动了
+
+MyRunnable.java
+
+        package com.ithema_15;
+
+        public class MyRunnable implements Runnable{
+            @Override
+            public void run() {
+                System.out.println("多线程程序启动了");
+            }
+        }
