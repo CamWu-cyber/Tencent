@@ -3821,7 +3821,7 @@ Lambda表达式的使用前提
 * 有一个接口
 * 接口中有且仅有一个抽象方法
 
-练习1：
+练习1（抽象方法无参无返回）：
 * 定义一个接口（Eatable）,里面定义一个抽象方法：void eat()
 * 定义一个测试类（EatableDemo）,在测试类中提供两个方法
 
@@ -3881,7 +3881,7 @@ EatableDemo.java
         一天一苹果，医生远离我
         一天一苹果，医生远离我
 
-练习2
+练习2（抽象方法带参无返回）：
 * 定义一个接口（Flyable），里面定义一个抽象方法：void fly(String s);
 * 定义一个测试类（FlyableDemo），在测试类中提供两个方法
 * 与上一个练习的区别是，此抽象方法里面带有形参，所以Lambda表达式里面，也会有形参输入；
@@ -3890,3 +3890,39 @@ EatableDemo.java
 
 &emsp;&emsp;一个是main方法，在main方法中调用useFlyable方法
 
+Flyable.java
+
+        package com.ithema_17;
+
+        public interface Flyable {
+            void fly(String s);
+        }
+
+FlyableDemo.java
+
+        package com.ithema_17;
+
+        public class FlyableDemo {
+            public static void main(String[] args) {
+                //在main方法中调用useFlyable方法
+                //方法1：匿名内部类
+                useFlyable(new Flyable() {
+                    @Override
+                    public void fly(String s) {
+                        System.out.println(s);
+                    }
+                });
+
+                //方法2：Lambda表达式
+                useFlyable((String s) -> {
+                    System.out.println(s);
+                });
+            }
+
+            public static void useFlyable(Flyable f) {
+                f.fly("风和日丽");
+            }
+        }
+        运行结果：
+        风和日丽
+        风和日丽
