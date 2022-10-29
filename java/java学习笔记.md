@@ -3968,3 +3968,45 @@ AddableDemo.java
 * 如果参数有且仅有一个，那么小括号可以省略
 * 如果代码块的语句只有一条，可以省略大括号和分号，甚至是return
 
+Addable.java
+
+        package com.itheima_19;
+
+        public interface Addable {
+            int add (int x, int y);
+        }
+        
+Flyable.java
+
+        package com.itheima_19;
+
+        public interface Flyable {
+            void fly(String s);
+        }
+        
+LambdaDemo.java
+
+        package com.itheima_19;
+
+        public class LambdaDemo {
+            public static void main(String[] args) {
+                //参数类型可以省略
+                //如果代码块的语句只有一条，可以省略大括号和分号，如果有return, return也要省略
+                useAddable(((x, y) -> x + y));
+
+                //如果代码块的语句只有一条，可以省略大括号和分号
+                useFlyable(s -> System.out.println(s));
+            }
+
+            private static void useFlyable(Flyable f) {
+                f.fly("风和日丽");
+            }
+
+            private static void useAddable(Addable a) {
+                int sum = a.add(10, 20);
+                System.out.println(sum);
+            }
+        }
+        运行结果：
+        30
+        风和日丽
