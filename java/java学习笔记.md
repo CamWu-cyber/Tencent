@@ -3884,7 +3884,6 @@ EatableDemo.java
 练习2
 * 定义一个接口（Flyable），里面定义一个抽象方法：void fly(String s);
 * 定义一个测试类（FlyableDemo），在测试类中提供两个方法
-
 &emsp;&emsp;一个方法是：useFlyable(Flyable f)
 
 &emsp;&emsp;一个是main方法，在main方法中调用useFlyable方法
