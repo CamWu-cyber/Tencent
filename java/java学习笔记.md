@@ -3824,4 +3824,5 @@ Lambda表达式的使用前提
 * 定义一个测试类（EatableDemo）,在测试类中提供两个方法
 
 &emsp;&emsp;&emsp;&emsp;一个方法是useEatable(Eatable e)
+
 &emsp;&emsp;&emsp;&emsp;一个方法是主方法，在主方法中调用useEatable方法
