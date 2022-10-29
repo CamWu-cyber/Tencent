@@ -3926,3 +3926,12 @@ FlyableDemo.java
         运行结果：
         风和日丽
         风和日丽
+
+练习3（抽象方法带参带返回值）：
+* 定义一个接口（Addable），里面定义一个抽象方法：int add(int x, int y);
+* 定义一个测试类（AddableDemo），在测试类中提供两个方法
+
+&esmp;&esmp;一个方法是：useAddable(Addable a)
+
+&esmp;&esmp;一个方法是main方法，在main方法中调用useAddable方法
+
