@@ -3884,6 +3884,7 @@ EatableDemo.java
 练习2
 * 定义一个接口（Flyable），里面定义一个抽象方法：void fly(String s);
 * 定义一个测试类（FlyableDemo），在测试类中提供两个方法
+* 与上一个练习的区别是，此抽象方法里面带有形参，所以Lambda表达式里面，也会有形参输入；
 
 &emsp;&emsp;一个方法是：useFlyable(Flyable f)
 
