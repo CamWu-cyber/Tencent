@@ -3825,4 +3825,4 @@ Lambda表达式的使用前提
 
 &emsp;&emsp;&emsp;&emsp;一个方法是useEatable(Eatable e)
 
-&emsp;&emsp;&emsp;&emsp;一个方法是主方法，在主方法中调用useEatable方法
+&emsp;&emsp;&emsp;&emsp;一个方法是main方法，在main方法中调用useEatable方法
