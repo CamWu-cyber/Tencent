@@ -3931,9 +3931,9 @@ FlyableDemo.java
 * 定义一个接口（Addable），里面定义一个抽象方法：int add(int x, int y);
 * 定义一个测试类（AddableDemo），在测试类中提供两个方法
 
-&esmp;&esmp;一个方法是：useAddable(Addable a)
+&smsp;&emsp;一个方法是：useAddable(Addable a)
 
-&esmp;&esmp;一个方法是main方法，在main方法中调用useAddable方法
+&emsp;&emsp;一个方法是main方法，在main方法中调用useAddable方法
 
 Addable.java
 
