@@ -4010,3 +4010,12 @@ LambdaDemo.java
         运行结果：
         30
         风和日丽
+
+### Lambda表达式的注意事项
+注意事项：
+* 使用Lambda必须要有接口，并且要求接口中有且仅有一个抽象方法
+* 必须有上下文环境，编译器才能推导出Lambda对应的接口
+
+&emsp;&emsp;根据**局部变量的赋值**得知Lambda对应的接口：Runnable r = () -> System.out.println("Lambda表达式");
+
+&emsp;&emsp;根据**调用方法的参数**得知Lambda对应的接口：new Thread(() -> System.out.println("Lambda表达式")).start();
