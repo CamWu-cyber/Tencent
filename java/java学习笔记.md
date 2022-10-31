@@ -4124,3 +4124,88 @@ LambdaDemo.java
 * 默认方法不是抽象方法，所以不能强制被重写。但是要是想重写它也是可以的，重写的时候在接口实现类中去掉 default 关键字
 * public 可以省略，default 不能省略
 
+MyInterface.java
+
+        package com.itheima_21;
+
+        public interface MyInterface {
+            //两个抽象方法
+            void show1();
+            void show2();
+
+            //默认方法
+            public default void show3() {
+                System.out.println("show3");
+            }
+        }
+
+MyInterfaceImplOne.java
+
+        package com.itheima_21;
+
+        public class MyInterfaceImplOne implements MyInterface{
+            @Override
+            public void show1() {
+                System.out.println("One show1");
+            }
+
+            @Override
+            public void show2() {
+                System.out.println("One show2");
+            }
+
+            //这个接口实现类没有重写 默认方法 show3 也不会报错
+        }
+
+MyInterfaceImplTwo.java
+
+        package com.itheima_21;
+
+        public class MyInterfaceImplTwo implements MyInterface{
+            @Override
+            public void show1() {
+                System.out.println("Two show1");
+            }
+
+            @Override
+            public void show2() {
+                System.out.println("Two show2");
+            }
+
+            // 重写 默认方法 show3
+
+            @Override
+            public void show3() {
+                System.out.println("Two show3");
+            }
+        }
+
+MyInterfaceDemo.java
+
+        package com.itheima_21;
+
+        public class MyInterfaceDemo {
+            public static void main(String[] args) {
+                // 按照多态的方式创建对象并使用
+                MyInterface my_1 = new MyInterfaceImplOne();
+                my_1.show1();
+                my_1.show2();
+                my_1.show3();
+
+                System.out.println("===================");
+
+                MyInterface my_2 = new MyInterfaceImplTwo();
+                my_2.show1();
+                my_2.show2();
+                my_2.show3();
+            }
+        }
+        
+        运行结果：
+        One show1
+        One show2
+        show3
+        ===================
+        Two show1
+        Two show2
+        Two show3
