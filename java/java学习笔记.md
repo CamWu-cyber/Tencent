@@ -4209,3 +4209,70 @@ MyInterfaceDemo.java
         Two show1
         Two show2
         Two show3
+
+### 接口中静态方法
+接口静态方法的定义格式：
+* 格式：public static 返回值类型 方法名（参数列表）{ }  不难发现，和一个类中的静态方法是一样的
+* 范例：public static void show() { }
+
+接口中静态方法的注意事项：
+* 静态方法只能通过接口名调用，不能通过实现类名或者对象调用
+* public 可以省略，static 不能省略
+
+Inter.java
+
+        package com.itheima_22;
+
+        public interface Inter {
+            void show();
+
+            default void method() {
+                System.out.println("默认方法");
+            }
+
+            public static void test() {
+                System.out.println("静态方法");
+            }
+        }
+
+InterImpl.java
+
+        package com.itheima_22;
+
+        public class InterImpl implements Inter{
+            @Override
+            public void show() {
+                System.out.println("抽象方法");
+            }
+        }
+
+InterDemo.java
+
+        package com.itheima_22;
+        /*
+            需求：
+                1. 定义一个接口Inter，里面有三个方法：一个是抽象方法，一个是默认方法，一个是静态方法
+                    void show();
+                    default void method() {}
+                    public static void test() {}
+                2. 定义接口的一个实现类
+                    InterImpl
+                3. 定义测试类
+                    InterDemo
+                    在main方法中，按照多态的方式创建对象并使用
+         */
+        public class InterDemo {
+            public static void main(String[] args) {
+                //按照多态的方式创建对象并使用
+                Inter i = new InterImpl();
+                i.show();
+                i.method();
+        //        i.test(); 报错，无法调用
+
+                Inter.test();  // 静态方法，只能通过接口名调用
+            }
+        }
+        运行结果：
+        抽象方法
+        默认方法
+        静态方法
