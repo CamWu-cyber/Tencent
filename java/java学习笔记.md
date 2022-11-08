@@ -4292,3 +4292,109 @@ Java 9 中新增了帶方法体的私有方法，这其实在Java 8 中就埋下
 * 默认方法可以调用私有的静态方法和非静态方法
 * 静态方法只能调用私有的静态方法
 * 所以，虽然私有方法可以有静态和非静态两种写法，不如直接统一写成静态方法，这样默认方法和静态方法都能调用私有方法了
+
+Inter.java
+
+        package com.itheima_23;
+
+        public interface Inter {
+            default void show1() {
+                System.out.println("show1开始");
+                show();
+                method();
+                System.out.println("show1结束");
+            }
+
+            default void show2() {
+                System.out.println("show2开始");
+                show();
+                method();
+                System.out.println("show2结束");
+            }
+
+            // 私有方法
+            private void show() {
+                System.out.println("1111111111");
+                System.out.println("2222222222");
+            }
+
+            static void method1() {
+                System.out.println("method1开始");
+                method();
+                System.out.println("method2结束");
+            }
+
+            static void method2() {
+                System.out.println("method2开始");
+                method();
+                System.out.println("method2结束");
+            }
+
+            // 私有静态方法
+            private static void method() {
+                System.out.println("1111111111");
+                System.out.println("2222222222");
+            }
+        }
+
+InterImpl.java
+
+        package com.itheima_23;
+
+        public class InterImpl implements Inter{
+            // 因为接口中没有定义具体方法，所以此接口实现类，什么都不用做
+        }
+
+InterDemo.java
+
+        package com.itheima_23;
+        /*
+            需求：
+                1.定义一个接口Inter，里面有四个方法：两个默认方法，两个静态方法
+                    default void show1(){ }
+                    default void show2(){ }
+                    static void method1(){ }
+                    static void method2(){ }
+                2.定义接口的一个实现类
+                    InterImpl
+                3.定义测试类
+                    InterDemo
+                    在main方法中，按照多态的方式创建对象并使用
+         */
+        public class InterDemo {
+            public static void main(String[] args) {
+                Inter i = new InterImpl();
+                i.show1();
+                System.out.println("------------");
+                i.show2();
+                System.out.println("------------");
+                Inter.method1();
+                System.out.println("------------");
+                Inter.method2();
+            }
+        }
+        
+        运行结果：
+        show1开始
+        1111111111
+        2222222222
+        1111111111
+        2222222222
+        show1结束
+        ------------
+        show2开始
+        1111111111
+        2222222222
+        1111111111
+        2222222222
+        show2结束
+        ------------
+        method1开始
+        1111111111
+        2222222222
+        method2结束
+        ------------
+        method2开始
+        1111111111
+        2222222222
+        method2结束
