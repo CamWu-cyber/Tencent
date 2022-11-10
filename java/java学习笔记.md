@@ -4411,5 +4411,43 @@ InterDemo.java
 
 需要借助方法引用来使用已经存在的方法
 
+Printable.java
+
+        package com.itheima_24;
+
+        public interface Printable {
+            void printString(String s);
+        }
+
+PrintableDemo.java
+
+        package com.itheima_24;
+        /*
+            需求：
+                1. 定义一个接口（Printable）：里面定义一个抽象方法：void printString(String s);
+                2. 定义一个测试类（PrintableDemo），在测试类中提供两种方法
+                    一个方法是：usePrintalbe(Printable p)
+                    一个方法是main方法，在main方法中调用usePrintable方法
+         */
+        public class PrintableDemo {
+            public static void main(String[] args) {
+                // Lambda 表达式
+                usePrintable(s -> System.out.println(s));
+
+                // 方法引用符 ::
+                usePrintable(System.out::println);
+
+                // 可推导就是可省略的
+                // 在方法引用中，s参数传递进去了，只不过看不见
+            }
+
+            public static void usePrintable(Printable p) {
+                p.printString("爱生活");
+            }
+        }
+        
+        运行结果：
+        爱生活
+        爱生活
 
 
