@@ -4450,4 +4450,20 @@ PrintableDemo.java
         爱生活
         爱生活
 
+### 方法引用符
+方法引用符
+* ：： 该符号为引用运算符，而它所在的表达式被称为方法引用
 
+回顾一下我们在体验方法引用中的代码
+* Lambda 表达式：usePrintables(s -> Sysyem.out.println(s));
+
+&emsp;&emsp;分析：拿到参数s之后通过Lambda 表达式，传递给 Sysyem.out.println 方法去处理
+
+* 方法引用：usePrintable(System.out::println);
+
+&emsp;&emsp;分析：直接使用Sysyem.out 中的 println 方法来取代Lambda, 代码更加简洁
+
+推导与省略
+* 如果使用 Lambda，那么根据“可推导就是可省略”的原则，无需指定参数类型，也无需指定的重载形式，它们都将自动推导
+* 如果使用方法引用，也是同样可以根据上下文进行推导
+* 方法引用是Lambda的孪生兄弟
