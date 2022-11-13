@@ -4467,3 +4467,19 @@ PrintableDemo.java
 * 如果使用 Lambda，那么根据“可推导就是可省略”的原则，无需指定参数类型，也无需指定的重载形式，它们都将自动推导
 * 如果使用方法引用，也是同样可以根据上下文进行推导
 * 方法引用是Lambda的孪生兄弟
+
+### Lambda 支持的方法引用
+常见的引用方式：
+* 引用类方法
+* 引用对象的实例方法
+* 引用类的实例方法
+* 引用构造器
+
+### 引用类方法
+引用类方法，其实就是引用类的**静态方法**
+* 格式：类名：：静态方法
+* 范例：Integer::parseInt
+
+&emsp;&emsp;Integer类的方法：public static int parseInt(String s)将此String转换为int类型数据
+
+
