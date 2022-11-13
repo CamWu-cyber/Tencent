@@ -4528,3 +4528,11 @@ ConverterDemo.java
         运行结果：
         666
         666
+
+### 引用对象的实例方法
+引用对象的实例方法，其实就是引用类中的成员方法
+* 格式：对象：：成员方法
+* 范例："HelloWorld"::toUpperCase
+
+&emsp;&emsp;String类中的方法：public String toUpperCase() 将此String所有字符串转换为大写
+
