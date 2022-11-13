@@ -4536,3 +4536,68 @@ ConverterDemo.java
 
 &emsp;&emsp;String类中的方法：public String toUpperCase() 将此String所有字符串转换为大写
 
+PrintString.java
+
+        package com.itheima_26;
+
+        public class PrintString {
+            //把字符串参数变成大写的数据，然后在控制台输出
+            public void printUpper(String s) {
+                String result = s.toUpperCase();
+                System.out.println(result);
+            }
+        }
+
+
+Printer.java
+
+        package com.itheima_26;
+
+        public interface Printer {
+            void printUpperCase(String s);
+        }
+        
+PrinterDemo.java
+
+        package com.itheima_26;
+        /*
+            练习：
+                1.定义一个类（PrintString）,里面定义一个方法
+                    public void printUpper(String s): 把字符串参数变成大写的数据，然后在控制台输出
+                2.定义一个接口（Printer）,里面定义一个抽象方法
+                    void printUpperCase(String s)
+                3.定义一个测试类（PrinterDemo）,在测试类中提供两个方法
+                    一个方法是：usePrinter(Printer p)
+                    一个方法是main方法：在main方法中调用usePrinter方法
+         */
+        public class PrinterDemo {
+            public static void main(String[] args) {
+                //在main方法中调用usePrinter方法
+
+                // Lambda 1
+                usePrinter((String s) -> {
+                    System.out.println(s.toUpperCase());
+                });
+
+                // Lambda 2
+                // Lambda 1 只有一个参数，所以小括号可以省；
+                // 方法体中只有一条语句，所以大括号和分号是可以省的；
+                usePrinter(s -> System.out.println(s.toUpperCase()));
+
+                // 引用对象的实例方法
+                // 发现Lambda 中的方法体，在 PrintString 类中的已经被实现好了，所以可以用printUpper()方法来替代Lambda方法体的内容
+                PrintString ps = new PrintString();
+                usePrinter(ps::printUpper);
+
+                //Lambda 被对象的实例方法替代的时候，它的形式参数全部传递给该方法作为入参
+            }
+
+            public static void usePrinter(Printer p) {
+                p.printUpperCase("HelloWorld");
+            }
+        }
+        
+        运行结果：
+        HELLOWORLD
+        HELLOWORLD
+        HELLOWORLD
