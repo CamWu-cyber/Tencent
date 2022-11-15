@@ -4601,3 +4601,61 @@ PrinterDemo.java
         HELLOWORLD
         HELLOWORLD
         HELLOWORLD
+
+### 引用类的实例方法
+引用类的实例方法，其实就是引用类中的成员方法（**这里的类，我理解指的都是API的类，不是你自己随便写的某个类）
+* 格式：类名：：成员方法
+* 范例：String::substring
+
+&emsp;&emsp;String类中的方法：public String substring(int beginIndex, int endIndex)
+&emsp;&emsp;从beginIndex开始到endIndex结束，截取字符串。返回一个子串，子串的长度为endIndex - beginIndex
+
+MyString.java
+
+        package com.itheima_27;
+
+        public interface MyString {
+            String mySubString(String s, int x, int y);
+        }
+
+MyStringDemo.java
+
+        package com.itheima_27;
+        /*
+            需求：
+                1.定义一个接口（MyString）,里面定义一个抽象方法
+                    String mySubString(String s, int x, int y);
+                2.定义一个测试类（MyStringDemo）,在测试类中提供两个方法
+                    一个方法是：useMyString(MyString my)
+                    一个方法是main方法：在main方法中调用useMyString方法
+         */
+        public class MyStringDemo {
+            public static void main(String[] args) {
+                //在main方法中调用useMyString方法
+
+                //Lambda 1
+                useMyString((String s, int x, int y) -> {
+                    return s.substring(x,y);
+                });
+
+                //Lambda 2
+                useMyString((s,x,y) -> s.substring(x,y));
+
+                //引用类的实例方法
+                useMyString(String::substring);
+
+                //Lambda 被类的实例方法替代的时候
+                //第一个参数作为调用者，此处指s
+                //后面的参数全部传递给该方法作为入参，此处指 x 和 y
+            }
+
+            public static void useMyString(MyString my) {
+                String s = my.mySubString("helloworld",2,5);
+                System.out.println(s);
+            }
+        }
+        
+        运行结果：
+        llo
+        llo
+        llo
