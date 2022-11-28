@@ -4659,3 +4659,9 @@ MyStringDemo.java
         llo
         llo
         llo
+
+### 引用构造器
+引用构造器，其实就是引用构造方法
+* 格式：类名：：new
+* 范例：Student::new
+
