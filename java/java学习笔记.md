@@ -4665,3 +4665,87 @@ MyStringDemo.java
 * 格式：类名：：new
 * 范例：Student::new
 
+Student.java
+
+        package com.itheima_28;
+
+        public class Student {
+            private String name;
+            private int age;
+
+            public Student() {
+            }
+
+            public Student(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public int getAge() {
+                return age;
+            }
+
+            public void setAge(int age) {
+                this.age = age;
+            }
+
+        }
+
+StudentBuilder.java
+
+        package com.itheima_28;
+
+        public interface StudentBuilder {
+            Student build(String name, int age);
+        }
+
+StudentDemo.java
+
+        package com.itheima_28;
+        /*
+            练习：
+                1.定义一个类（Student），里面有两个成员变量（name, age）
+                    并提供无参构造方法和带参构造方法，以及成员变量对应的get和set方法
+                2.定义一个接口（StudentBuilder），里面定义一个抽象方法
+                    Student build(String name, int age);
+                3.定义一个测试类（StudentDemo），在测试类中提供两个方法
+                    一个方法是：useStudentBuilder(StudentBuilder s)
+                    一个方法是main方法，在main方法中调用useStudentBuilder方法
+         */
+
+        public class StudentDemo {
+            public static void main(String[] args) {
+                // 在main方法中调用useStudentBuilder方法
+
+                // Lambda 1
+                useStudentBuilder((String name, int age) -> {
+                    return new Student(name, age);
+                });
+
+                // Lambda 2
+                useStudentBuilder((name, age) -> new Student(name, age));
+
+                // 引用构造器
+                useStudentBuilder(Student::new);
+
+                // Lambda表达式被构造器替代的时候，它的形式参数全部传递给构造器作为入参
+            }
+
+            public static void useStudentBuilder(StudentBuilder sb) {
+                Student s = sb.build("林青霞", 30);
+                System.out.println(s.getName() + "," + s.getAge());
+            }
+        }
+        
+        运行结果：
+        林青霞,30
+        林青霞,30
+        林青霞,30
