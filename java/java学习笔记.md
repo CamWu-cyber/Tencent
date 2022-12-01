@@ -4779,6 +4779,7 @@ MyInterfaceDemo.java
         public class MyInterfaceDemo {
             public static void main(String[] args) {
                 // 函数式接口作为局部变量的时候，可以把 Lambda 直接赋值给它的
+                // 这个原理在 <Lambda表达式的注意事项> 章节讲过，忘记了，就倒回去看看
                 MyInterface my = () -> System.out.println("函数式接口");
                 my.show();
             }
