@@ -3825,9 +3825,9 @@ Lambda表达式的使用前提
 * 定义一个接口（Eatable）,里面定义一个抽象方法：void eat()
 * 定义一个测试类（EatableDemo）,在测试类中提供两个方法
 
-&emsp;&emsp一个方法是useEatable(Eatable e)
+&emsp;&emsp;一个方法是useEatable(Eatable e)
 
-&emsp;&emsp一个方法是main方法，在main方法中调用useEatable方法
+&emsp;&emsp;一个方法是main方法，在main方法中调用useEatable方法
 
 Eatable.java
 
