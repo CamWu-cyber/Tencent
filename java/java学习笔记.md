@@ -4763,3 +4763,26 @@ Java 中的函数式接口 体现的就是 Lambda 表达式，所以函数式接
 注意：
 * @FunctionalInterface是可选的，就算不写这个注释，只要保证满足函数式接口定义的条件，也照样是函数式接口。但是，**建议加上该注释**
 
+MyInterface.java
+
+        package com.itheima_29;
+
+        @FunctionalInterface
+        public interface MyInterface {
+            void show();
+        }
+
+MyInterfaceDemo.java
+
+        package com.itheima_29;
+
+        public class MyInterfaceDemo {
+            public static void main(String[] args) {
+                // 函数式接口作为局部变量的时候，可以把 Lambda 直接赋值给它的
+                MyInterface my = () -> System.out.println("函数式接口");
+                my.show();
+            }
+        }
+        
+        运行结果：
+        函数式接口
