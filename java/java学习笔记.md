@@ -4825,3 +4825,9 @@ RunnableDemo.java
         运行结果：
         Thread-0 线程启动了
         Thread-1 线程启动了
+
+### 函数式接口作为方法的返回值
+如果方法的返回值是一个函数式接口，我们可以使用 Lambda 表达式作为返回结果
+        private static Comparator<String> getComparator() {
+                return (s1, s2) -> s1.length() - s2.length();
+        }
